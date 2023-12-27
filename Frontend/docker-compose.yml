@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  app:
+    container_name: adss_front
+    ports:
+      - 3000:3000
+    image: front_img

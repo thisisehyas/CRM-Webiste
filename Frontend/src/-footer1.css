@@ -1,0 +1,54 @@
+.footer-container {
+  /* the next line is only for testing */
+  margin-top: 10%;
+  border-top: 1px solid rgba(184, 184, 184, 0.44);
+  background-color: #fbfbfb;
+  padding: 5%;
+}
+
+.logo {
+  width: 61px;
+}
+
+.first {
+  display: flex;
+  flex-direction: column;
+}
+
+.second {
+  margin-right: auto;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.links a {
+  text-decoration: none;
+  color: black;
+  width: 50%;
+  margin-top: 20px;
+}
+
+.links a:nth-child(odd) {
+  margin-bottom: 10px;
+}
+
+.links a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icons svg {
+  margin-right: 1%;
+}
+
+@media only screen and (max-width: 1000px) {
+  /* Hide spans and map on smaller screens */
+  .hide-on-small-screen {
+    display: none;
+  }
+}
