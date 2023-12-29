@@ -2,9 +2,10 @@
 // import Home from "./home";
 import Navbar1 from "./-Navbar1";
 import Footer1 from "./-footer1";
+import Carousel1 from "./-carousel1";
+import Card1 from "./-card";
 // uncomment the next line again when you want to continure learning and comment the upper line
 // import './index.css';
-import "./-Navbar1.css";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
 
       {/* the code for the ADSS project */}
       <Navbar1 />
+      <Carousel1 />
+      <Card1 />
       <Footer1 />
     </div>
   );
