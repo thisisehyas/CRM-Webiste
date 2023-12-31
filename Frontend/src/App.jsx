@@ -3,7 +3,8 @@
 import Navbar1 from "./-Navbar1";
 import Footer1 from "./-footer1";
 import Carousel1 from "./-carousel1";
-import Card1 from "./-card";
+import Card1 from "./-categoryCards";
+import ProductsCols from "./-productsCols";
 // uncomment the next line again when you want to continure learning and comment the upper line
 // import './index.css';
 
@@ -18,6 +19,7 @@ function App() {
       <Navbar1 />
       <Carousel1 />
       <Card1 />
+      <ProductsCols />
       <Footer1 />
     </div>
   );
