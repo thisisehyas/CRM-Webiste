@@ -101,7 +101,10 @@ const footer1 = () => {
             </svg>
           </a>
         </div>
-        <div className="col-6 d-flex align-items-center justify-content-end line">
+        <div
+          className="col-6 d-flex align-items-center justify-content-end line"
+          style={{ fontSize: "14px" }}
+        >
           &copy;2023 ---. All rights reserved
         </div>
       </div>
@@ -116,5 +119,7 @@ export default footer1;
 //  - The google maps should be linked to the real location of the comapny.
 
 //  - The footer should be sticky at the end of the page.
+
+//  - The font family could be anything better.
 
 //  - The second column related to دسترسی سریع should be a little more to the right.

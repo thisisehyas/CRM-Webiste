@@ -11,11 +11,11 @@ const Navbar1 = () => {
   return (
     <Navbar
       expand="lg"
-      className="bg-body-tertiary"
+      className="bg-body-tertiary fixed-top"
       style={{ textAlign: "right", direction: "rtl" }}
     >
       <Container fluid className="nav-container">
-        <Navbar.Brand href="" className="navbar-brand">
+        <Navbar.Brand href="../index.html" className="navbar-brand">
           <img
             className="logo"
             src="../images/logo-navbar.png"
@@ -40,7 +40,7 @@ const Navbar1 = () => {
             <Nav.Link href="#action2" className="nav-link ms-3">
               نمونه کارها
             </Nav.Link>
-            <Nav.Link href="#action2" className="nav-link ms-3">
+            <Nav.Link href="../about.html" className="nav-link ms-3">
               درباره ما
             </Nav.Link>
             <Nav.Link href="#action1" className="nav-link ms-3">
@@ -114,7 +114,9 @@ export default Navbar1;
 
 // Things to fix:
 
-// - The navbar should be sticked to the top
+// - the logo should be a button that goes to the home page.
+// - you can adjust the positions for when the navbar is opened
+//    the carousel won't go under it so it is still visible
 // - Complete the href of the navbar links.
 // - The hover effect of the
 //    - each navlink
