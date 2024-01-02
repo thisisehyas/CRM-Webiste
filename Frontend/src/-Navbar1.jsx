@@ -128,3 +128,5 @@ export default Navbar1;
 //    go back. Do this with js.
 //    If it only sticked to the right of the page without sapce, that
 //    would be ok too.
+//  - The search bar, when you try to right in it, the direction is not
+//    from right to left. make it happen to be better for persion typing.

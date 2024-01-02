@@ -2,13 +2,14 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/esm/Container";
+import "./middlePart.css";
 
 const middlePart = () => {
   return (
     <Container>
-      <div className="row">
+      <div className="row mt-4">
         <div
-          className="col-12 col-lg-6"
+          className="col-12 col-lg-6 order-lg-2"
           style={{ direction: "rtl", textAlign: "right" }}
         >
           <p className="first-p">
@@ -30,32 +31,39 @@ const middlePart = () => {
             آینده، شناخت فراوان جامعه و متخصصان را می طلبد.
           </p>
         </div>
-        <div className="col-12 col-lg-6">
-          <Carousel fade style={{width: ""}}>
+        <div className="col-12 col-lg-6 order-lg-1">
+          <Carousel
+            className="shadow"
+            fade
+            style={{ minWidth: "50%", width: "80%" }}
+          >
             <Carousel.Item>
               <img
                 src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/108/904/original/159f8f_2.png?1704133269"
                 alt="عکس نمونه"
+                className="d-block w-100"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
                 src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/108/904/original/159f8f_2.png?1704133269"
                 alt="عکس نمونه"
+                className="d-block w-100"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
                 src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/108/904/original/159f8f_2.png?1704133269"
                 alt="عکس نمونه"
+                className="d-block w-100"
               />
             </Carousel.Item>
           </Carousel>
         </div>
       </div>
-      <div className="row">
+      <div className="row mt-4">
         <div
-          className="col-12 col-lg-6 second-p"
+          className="col-12 col-lg-6 second-p order-lg-1"
           style={{ direction: "rtl", textAlign: "right" }}
         >
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
@@ -70,8 +78,10 @@ const middlePart = () => {
           اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده
           قرار گیرد.
         </div>
-        <div className="col-12 col-lg-6">
+        <div className="col-12 col-lg-6 order-lg-2">
           <img
+            className="shadow"
+            style={{ width: "80%" }}
             src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/108/904/original/159f8f_2.png?1704133269"
             alt="عکس نمونه"
           />
@@ -85,9 +95,8 @@ export default middlePart;
 
 // THINGS TO SOLVE:
 
-// - The first paragraph should be on the right
-//      in large views but it's on the left.
+//  - Make the margin between the .second-p and the
+//    img to look good.
 
-//  - The carousel right arrow is not in the pic
-//      so fix that.
-
+//  - Also it doesn't look that good when making the page
+//    smaller. So you need to make that right.
