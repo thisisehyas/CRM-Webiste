@@ -7,6 +7,7 @@ import About from "./-About";
 import Services from "./-Services";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SampleWorks from "./-Sampleworks";
+import Contact from "./-Contact";
 // uncomment the next line again when you want to continure learning and comment the upper line
 // import './index.css';
 
@@ -33,6 +34,9 @@ function App() {
             </Route>
             <Route path="/SampleWorks">
               <SampleWorks />
+            </Route>
+            <Route path="/Contact">
+              <Contact />
             </Route>
           </Switch>
         </div>

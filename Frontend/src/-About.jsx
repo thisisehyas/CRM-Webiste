@@ -4,6 +4,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/esm/Container";
 import Header from "./-header";
 import "./-About.css";
+import "./-fontSize.css";
 
 const About = () => {
   return (
@@ -12,7 +13,7 @@ const About = () => {
       <Container>
         <div className="row mt-4">
           <div
-            className="col-12 col-lg-6 order-lg-2"
+            className="col-12 col-lg-6 order-lg-2 change-font"
             style={{ direction: "rtl", textAlign: "right" }}
           >
             <p className="first-p">
@@ -67,7 +68,7 @@ const About = () => {
         </div>
         <div className="row mt-4">
           <div
-            className="col-12 col-lg-6 second-p order-lg-1"
+            className="col-12 col-lg-6 second-p order-lg-1 change-font"
             style={{ direction: "rtl", textAlign: "right" }}
           >
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با

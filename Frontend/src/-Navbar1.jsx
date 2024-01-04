@@ -44,7 +44,7 @@ const Navbar1 = () => {
             <Nav.Link as={Link} to="/About" className="nav-link ms-3">
               درباره ما
             </Nav.Link>
-            <Nav.Link href="#action1" className="nav-link ms-3">
+            <Nav.Link as={Link} to="/Contact" className="nav-link ms-3">
               تماس با ما
             </Nav.Link>
           </Nav>
