@@ -35,13 +35,13 @@ const Navbar1 = () => {
             <Nav.Link href="#action2" className="nav-link ms-3">
               محصولات
             </Nav.Link>
-            <Nav.Link as={Link} to="/services" className="nav-link ms-3">
+            <Nav.Link as={Link} to="/Services" className="nav-link ms-3">
               خدمات
             </Nav.Link>
-            <Nav.Link href="#action2" className="nav-link ms-3">
+            <Nav.Link as={Link} to="/SampleWorks" className="nav-link ms-3">
               نمونه کارها
             </Nav.Link>
-            <Nav.Link as={Link} to="/about" className="nav-link ms-3">
+            <Nav.Link as={Link} to="/About" className="nav-link ms-3">
               درباره ما
             </Nav.Link>
             <Nav.Link href="#action1" className="nav-link ms-3">

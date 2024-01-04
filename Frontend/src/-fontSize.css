@@ -1,0 +1,17 @@
+.change-font {
+  font-size: 100%;
+}
+
+.change-font-title {
+  font-size: 130%;
+}
+
+@media screen and (max-width: 770px) {
+  .change-font {
+    font-size: 80%;
+  }
+
+  .change-font-title {
+    font-size: 110%;
+  }
+}

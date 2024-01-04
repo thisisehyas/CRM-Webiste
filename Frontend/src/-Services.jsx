@@ -5,12 +5,13 @@ import "./-Services.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import "./-fontSize.css";
 
 const Services = () => {
   return (
     <>
       <Header title="خدمات" />
-      <div className="services-text">
+      <div className="services-text change-font">
         <p style={{ direction: "rtl", textAlign: "right" }}>
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
           استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
@@ -39,10 +40,13 @@ const Services = () => {
                   src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/109/180/original/image_14.png?1704367468"
                 />
                 <Card.Body>
-                  <Card.Title className="text-center">
+                  <Card.Title className="text-center change-font-title">
                     مشاوره های رایگان
                   </Card.Title>
-                  <Card.Text style={{ textAlign: "right", direction: "rtl" }}>
+                  <Card.Text
+                    className="change-font"
+                    style={{ textAlign: "right", direction: "rtl" }}
+                  >
                     کارشناسان شرکت با سال‌ها تجربه و دانش، آماده پاسخگویی به
                     سوالات و ابهام‌های شما در زمینه خرید، ارتقا و یا تعمیرات
                     می‌باشند. این مشاوره‌ها هم به صورت حضوری و هم به صورت تلفنی

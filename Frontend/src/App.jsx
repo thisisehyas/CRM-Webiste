@@ -6,6 +6,7 @@ import Home from "./-Home";
 import About from "./-About";
 import Services from "./-Services";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import SampleWorks from "./-Sampleworks";
 // uncomment the next line again when you want to continure learning and comment the upper line
 // import './index.css';
 
@@ -24,11 +25,14 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/about">
+            <Route path="/About">
               <About />
             </Route>
-            <Route path="/services">
+            <Route path="/Services">
               <Services />
+            </Route>
+            <Route path="/SampleWorks">
+              <SampleWorks />
             </Route>
           </Switch>
         </div>
