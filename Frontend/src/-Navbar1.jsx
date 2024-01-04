@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "./-Navbar1.css";
+import { Link } from "react-router-dom";
 
 const Navbar1 = () => {
   return (
@@ -15,7 +16,7 @@ const Navbar1 = () => {
       style={{ textAlign: "right", direction: "rtl" }}
     >
       <Container fluid className="nav-container">
-        <Navbar.Brand href="../index.html" className="navbar-brand">
+        <Navbar.Brand as={Link} to="/" className="navbar-brand">
           <img
             className="logo"
             src="../images/logo-navbar.png"
@@ -34,13 +35,13 @@ const Navbar1 = () => {
             <Nav.Link href="#action2" className="nav-link ms-3">
               محصولات
             </Nav.Link>
-            <Nav.Link href="#action2" className="nav-link ms-3">
+            <Nav.Link as={Link} to="/services" className="nav-link ms-3">
               خدمات
             </Nav.Link>
             <Nav.Link href="#action2" className="nav-link ms-3">
               نمونه کارها
             </Nav.Link>
-            <Nav.Link href="../about.html" className="nav-link ms-3">
+            <Nav.Link as={Link} to="/about" className="nav-link ms-3">
               درباره ما
             </Nav.Link>
             <Nav.Link href="#action1" className="nav-link ms-3">
@@ -130,3 +131,4 @@ export default Navbar1;
 //    would be ok too.
 //  - The search bar, when you try to right in it, the direction is not
 //    from right to left. make it happen to be better for persion typing.
+//  - Generally speaking I don't like the responsiveness of the navbar. it is responsive but it's ugly. so fix it.

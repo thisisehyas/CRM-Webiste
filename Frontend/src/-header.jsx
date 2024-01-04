@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "react-bootstrap/Image";
 import "./-header.css";
 
-const Header = () => {
+const Header = ({title}) => {
   return (
     <div className="headerContainer">
       <Image
@@ -12,7 +12,7 @@ const Header = () => {
         src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/108/872/original/e6a7e84d075ed453954d6d882beacf0f_1.png?1704124150"
         alt="عکس پس زمینه هدر"
       />
-      <h1 className="headerText">درباره ما</h1>
+      <h1 className="headerText">{title}</h1>
       <svg
         className="headerSVG"
         xmlns="http://www.w3.org/2000/svg"
