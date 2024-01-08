@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
 import Card from "react-bootstrap/Card";
-import "./-productsCols.css";
+import "../styles/-productsCols.css";
 
 const productsCols = () => {
   return (

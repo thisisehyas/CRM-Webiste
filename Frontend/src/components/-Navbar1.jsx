@@ -5,8 +5,8 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import "./-Navbar1.css";
-import { Link } from "react-router-dom";
+import "../styles/-Navbar1.css";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 const Navbar1 = () => {
   return (
@@ -96,6 +96,8 @@ const Navbar1 = () => {
           </div>
         </Form>
         <Button
+          as={Link}
+          to="/login"
           variant="success"
           style={{
             color: "white",

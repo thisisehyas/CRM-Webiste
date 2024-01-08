@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "react-bootstrap/Image";
-import "./-header.css";
+import "../styles/-header.css";
 
 const Header = ({title}) => {
   return (

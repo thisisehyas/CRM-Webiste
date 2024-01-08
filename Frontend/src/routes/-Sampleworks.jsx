@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "./-header";
+import Header from "../components/-header.jsx";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Card from "react-bootstrap/Card";
 import React from "react";
-import "./-fontSize.css";
+import "../styles/-fontSize.css";
 
 const SampleWorks = () => {
   return (

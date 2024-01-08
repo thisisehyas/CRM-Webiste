@@ -1,11 +1,11 @@
 import Container from "react-bootstrap/esm/Container";
-import Header from "./-header";
+import Header from "../components/-header.jsx";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "./-fontSize.css";
+import "../styles/-fontSize.css";
 
 const Contact = () => {
   return (
@@ -54,7 +54,7 @@ const Contact = () => {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Group className="mb-3" controlId="phoneNumber">
                 <Form.Label>شماره تلفن همراه</Form.Label>
                 <Form.Control
                   className="change-font"
@@ -65,7 +65,7 @@ const Contact = () => {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Group className="mb-3" controlId="messageTitle">
                 <Form.Label>موضوع</Form.Label>
                 <Form.Control
                   className="change-font"
@@ -75,7 +75,7 @@ const Contact = () => {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Group className="mb-3" controlId="messageBody">
                 <Form.Label>پیام</Form.Label>
                 <Form.Control
                   className="change-font"
