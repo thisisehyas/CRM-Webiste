@@ -65,4 +65,21 @@ describe("Services Component", () => {
       expect(screen.queryByText("Edit Service")).not.toBeInTheDocument();
     });
   });
+
+  test("displays loading spinner while services are being fetched", async () => {
+    axios.get.mockResolvedValueOnce({ data: [] }); // Empty services initially
+
+    render(<Services />);
+
+    // Check if the loading spinner is displayed initially
+    expect(screen.getByTestId("loading-spinner")).toBeInTheDocument();
+
+    // Wait for services to load
+    await waitFor(() => {
+      expect(screen.queryByTestId("loading-spinner")).not.toBeInTheDocument();
+    });
+
+    // Check if the loading spinner is removed after services are loaded
+    expect(screen.queryByTestId("loading-spinner")).toBeNull();
+  });
 });
