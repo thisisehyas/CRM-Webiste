@@ -17,9 +17,10 @@ const Services = () => {
   const [services, setServices] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [newTitle, setNewTitle] = useState("");
-  const [newText, setNewText] = useState("");
-  const [newImageUrl, setNewImageUrl] = useState("");
+  const [newTitle, setNewTitle] = useState("Default Title");
+  const [newText, setNewText] = useState("Default Text");
+  const [newImageUrl, setNewImageUrl] = useState("defaultImageUrl");
+
   const [editedService, setEditedService] = useState({});
 
   const override = css`
@@ -36,8 +37,8 @@ const Services = () => {
   const loadServices = () => {
     setIsLoading(true);
 
-    // Replace the sample API URL with your actual API endpoint
-    const apiUrl = `https://jsonplaceholder.typicode.com/photos?_limit=4`;
+    const accessKey = "1Wm59-NEeIsfGkHZPRvWCmIRzXSeIvSIY3DdrYtCzJ0";
+    const apiUrl = `https://api.unsplash.com/photos/random?client_id=${accessKey}&count=4`;
 
     axios
       .get(apiUrl)
@@ -54,9 +55,9 @@ const Services = () => {
 
   const handleShowModal = (service) => {
     setEditedService(service);
-    setNewTitle(service.title);
-    setNewText(service.body);
-    setNewImageUrl(service.thumbnailUrl);
+    setNewTitle(service.alt_description || "");
+    setNewText(service.description || "");
+    setNewImageUrl(service.urls.full);
     setShowModal(true);
   };
 
@@ -68,7 +69,21 @@ const Services = () => {
   };
 
   const handleSaveChanges = () => {
-    // Implement logic to save changes to the backend here
+    // The logic that saves changes to the backend should be implemented here (later)
+
+    // Update the service in the services state
+    setServices((prevServices) =>
+      prevServices.map((service) =>
+        service.id === editedService.id
+          ? {
+              ...service,
+              alt_description: newTitle,
+              description: newText,
+              urls: { full: newImageUrl, thumb: newImageUrl },
+            }
+          : service
+      )
+    );
 
     // Close the modal
     handleCloseModal();
@@ -90,17 +105,17 @@ const Services = () => {
               >
                 <Card.Img
                   variant="top"
-                  src={service.thumbnailUrl || "defaultImageUrl"}
+                  src={service.urls.thumb || "defaultImageUrl"}
                 />
                 <Card.Body>
                   <Card.Title className="text-center change-font-title">
-                    {service.title || "Default Title"}
+                    {service.alt_description || "Default Title"}
                   </Card.Title>
                   <Card.Text
                     className="change-font"
                     style={{ textAlign: "right", direction: "rtl" }}
                   >
-                    {`${service.title} ${service.title}` || "Default Text"}
+                    {service.description || "Default Text"}
                   </Card.Text>
                   <Button
                     variant="primary"
@@ -133,7 +148,7 @@ const Services = () => {
               <Form.Control
                 type="text"
                 placeholder="Enter title"
-                value={newTitle}
+                value={newTitle || ""}
                 onChange={(e) => setNewTitle(e.target.value)}
               />
             </Form.Group>
@@ -143,7 +158,7 @@ const Services = () => {
                 as="textarea"
                 rows={3}
                 placeholder="Enter text"
-                value={newText}
+                value={newText || ""}
                 onChange={(e) => setNewText(e.target.value)}
               />
             </Form.Group>
@@ -152,7 +167,7 @@ const Services = () => {
               <Form.Control
                 type="text"
                 placeholder="Enter image URL"
-                value={newImageUrl}
+                value={newImageUrl || ""}
                 onChange={(e) => setNewImageUrl(e.target.value)}
               />
             </Form.Group>

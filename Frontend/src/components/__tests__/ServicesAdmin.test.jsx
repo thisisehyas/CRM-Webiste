@@ -11,15 +11,15 @@ describe("Services Component", () => {
     const fakeServices = [
       {
         id: 1,
-        title: "Service 1",
-        body: "Description 1",
-        thumbnailUrl: "image1.jpg",
+        alt_description: "Service 1",
+        description: "Description 1",
+        urls: { thumb: "image1.jpg" },
       },
       {
         id: 2,
-        title: "Service 2",
-        body: "Description 2",
-        thumbnailUrl: "image2.jpg",
+        alt_description: "Service 2",
+        description: "Description 2",
+        urls: { thumb: "image2.jpg" },
       },
     ];
 
@@ -36,9 +36,9 @@ describe("Services Component", () => {
   test("opens and closes the modal", async () => {
     const fakeService = {
       id: 1,
-      title: "Service 1",
-      body: "Description 1",
-      thumbnailUrl: "image1.jpg",
+      alt_description: "Service 1",
+      description: "Description 1",
+      urls: { thumb: "image1.jpg" },
     };
 
     axios.get.mockResolvedValueOnce({ data: [fakeService] });
