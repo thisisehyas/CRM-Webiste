@@ -1,17 +1,8 @@
-// Import necessary libraries
 import React from "react";
-import {
-  render,
-  screen,
-  act,
-  waitFor,
-  fireEvent,
-} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
 import ProductsCols from "../-productsCols.jsx";
 import "@testing-library/jest-dom";
 
-// Mock the fetch function
 global.fetch = jest.fn(() =>
   Promise.resolve({
     json: () => Promise.resolve([]),
@@ -20,11 +11,9 @@ global.fetch = jest.fn(() =>
 
 // Clear mock calls before each test
 beforeEach(() => {
-  // Mock IntersectionObserver
   window.IntersectionObserver = jest.fn();
 });
 
-// Define the test
 describe("ProductsCols Component", () => {
   it("renders component and fetches data on mount", async () => {
     const mockProducts = [
@@ -33,7 +22,6 @@ describe("ProductsCols Component", () => {
         thumbnailUrl: "https://example.com/product1.jpg",
         title: "Product 1",
       },
-      // Add more mock product data as needed
     ];
 
     // Mock the fetch function to return mock data
@@ -56,14 +44,12 @@ describe("ProductsCols Component", () => {
   });
 
   it("renders product cards with correct alt text", async () => {
-    // Mock data for product cards
     const mockProducts = [
       {
         id: 1,
         thumbnailUrl: "https://example.com/product1.jpg",
         title: "Product 1",
       },
-      // Add more mock product data as needed
     ];
 
     // Mock the fetch function to return mock data

@@ -27,7 +27,6 @@ describe("Services Component", () => {
 
     render(<Services />);
 
-    // Use waitFor to wait for asynchronous operations to complete
     await waitFor(() => {
       expect(screen.getByText("Service 1")).toBeInTheDocument();
       expect(screen.getByText("Service 2")).toBeInTheDocument();
@@ -46,7 +45,6 @@ describe("Services Component", () => {
 
     render(<Services />);
 
-    // Wait for services to load
     await waitFor(() => {
       expect(screen.getByText("Service 1")).toBeInTheDocument();
     });
@@ -67,7 +65,7 @@ describe("Services Component", () => {
   });
 
   test("displays loading spinner while services are being fetched", async () => {
-    axios.get.mockResolvedValueOnce({ data: [] }); // Empty services initially
+    axios.get.mockResolvedValueOnce({ data: [] });
 
     render(<Services />);
 

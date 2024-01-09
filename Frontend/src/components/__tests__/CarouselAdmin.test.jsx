@@ -3,11 +3,9 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import axios from "axios";
 import CarouselAdmin from "../Admin/AdminCarousel";
 
-// Mock Axios for testing
 jest.mock("axios");
 
 describe("CarouselAdmin", () => {
-  // Mock data for testing
   const mockItems = [
     { id: 1, url: "https://example.com/image1.jpg", title: "Image 1" },
     { id: 2, url: "https://example.com/image2.jpg", title: "Image 2" },
@@ -47,7 +45,6 @@ describe("CarouselAdmin", () => {
     await waitFor(() => {
       // Check if the "Add New Image" button is present
       const addNewImageButton = screen.getByText("Add New Image");
-      //   expect(addNewImageButton).toBeInTheDocument();
 
       // Mock the axios.post call
       axios.post.mockResolvedValueOnce({
@@ -79,7 +76,7 @@ describe("CarouselAdmin", () => {
 
     // Verify that the new image is added to the carousel
     await waitFor(() => {
-      const newImage = screen.getByAltText("Image 4"); // Adjust this alt text based on the title of the newly added image
+      const newImage = screen.getByAltText("Image 4");
     });
   });
 
