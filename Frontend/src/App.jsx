@@ -67,6 +67,8 @@ import SampleWorks from "./routes/-Sampleworks.jsx";
 import Contact from "./routes/-Contact.jsx";
 import Login from "./routes/-Login.jsx";
 import SignIn from "./routes/-SignIn.jsx";
+import CarouselAdmin from "./components/Admin/AdminCarousel.jsx";
+import ServicesAdmin from "./components/Admin/AdminServices.jsx";
 
 const MainLayout = ({ children }) => (
   <div className="App">
@@ -110,6 +112,10 @@ function App() {
         </Route>
         <Route path="/SignIn">
           <SignIn />
+        </Route>
+        <Route path="/checking">
+          <CarouselAdmin />
+          <ServicesAdmin />
         </Route>
       </Switch>
     </Router>
