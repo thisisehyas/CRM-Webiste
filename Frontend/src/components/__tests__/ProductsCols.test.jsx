@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import ProductsCols from "../-productsCols.jsx";
+import ProductsCols from "../ProductsCols.jsx";
 import "@testing-library/jest-dom";
 
 global.fetch = jest.fn(() =>

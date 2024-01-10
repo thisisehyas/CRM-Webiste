@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../styles/-Services.css";
+import "../../styles/services.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "../../styles/-fontSize.css";
+import "../../styles/fontSize.css";
 import Container from "react-bootstrap/Container";
 import axios from "axios";
 import { css } from "@emotion/react";

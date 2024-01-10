@@ -1,11 +1,11 @@
 import Container from "react-bootstrap/esm/Container";
-import Header from "../components/-header.jsx";
+import Header from "../components/Header.jsx";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "../styles/-fontSize.css";
+import "../styles/fontSize.css";
 
 const Contact = () => {
   return (

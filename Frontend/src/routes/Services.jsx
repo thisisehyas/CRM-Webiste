@@ -1,11 +1,11 @@
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "../components/-header.jsx";
-import "../styles/-Services.css";
+import Header from "../components/Header.jsx";
+import "../styles/services.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import "../styles/-fontSize.css";
+import "../styles/fontSize.css";
 import React from "react";
 
 const Services = () => {

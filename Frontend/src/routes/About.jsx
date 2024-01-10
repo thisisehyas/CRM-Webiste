@@ -2,9 +2,9 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/esm/Container";
-import Header from "../components/-header.jsx";
-import "../styles/-About.css";
-import "../styles/-fontSize.css";
+import Header from "../components/Header.jsx";
+import "../styles/about.css";
+import "../styles/fontSize.css";
 
 const About = () => {
   return (

@@ -2,8 +2,8 @@ import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import Container from "react-bootstrap/esm/Container";
-import "../styles/-categoryCards.css";
-import Wave from "../components/-waveSvg";
+import "../styles/categoryCards.css";
+import Wave from "../components/WaveSvg.jsx";
 
 function Card1() {
   return (

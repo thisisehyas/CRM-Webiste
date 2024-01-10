@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import Container from "react-bootstrap/esm/Container";
-import "../styles/-footer1.css";
+import "../styles/footer.css";
 
 const footer1 = () => {
   return (

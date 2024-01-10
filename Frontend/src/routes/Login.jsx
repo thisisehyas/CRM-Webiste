@@ -4,7 +4,7 @@ import Image from "react-bootstrap/Image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "../styles/-fontSize.css";
+import "../styles/fontSize.css";
 import { Link } from "react-router-dom";
 
 const Login = () => {
