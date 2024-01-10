@@ -113,7 +113,7 @@ function App() {
         <Route path="/SignIn">
           <SignIn />
         </Route>
-        <Route path="/checking">
+        <Route path="/testing">
           <CarouselAdmin />
           <ServicesAdmin />
         </Route>

@@ -51,7 +51,7 @@ const Login = () => {
             placeholder="رمز عبور خود را وارد کنید."
           />
           <Form.Text className="text-muted">
-            رمز عبور خود را فراموش کرده‌اید؟
+            قبلاً ثبت نام کرده‌اید؟
             <Link to="/SignIn">کلیک کنید.</Link>
           </Form.Text>
         </Form.Group>
