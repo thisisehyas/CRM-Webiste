@@ -60,7 +60,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
 import Card from "react-bootstrap/Card";
-import "../styles/productsCols.css";
+import "../styles/badge.css";
 import Spinner from "react-bootstrap/Spinner";
 
 const ProductsCols = () => {
@@ -114,15 +114,7 @@ const ProductsCols = () => {
   return (
     <>
       <Container className="text-center">
-        <Badge
-          className="mx-auto text-center myBadge"
-          style={{
-            width: "auto",
-            fontSize: "100%",
-            marginTop: "4%",
-            padding: "15px",
-          }}
-        >
+        <Badge className="mx-auto text-center myBadge">
           پربازدیدترین محصولات
         </Badge>
       </Container>

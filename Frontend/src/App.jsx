@@ -11,6 +11,7 @@ import Login from "./routes/Login.jsx";
 import SignIn from "./routes/SignIn.jsx";
 import CarouselAdmin from "./components/Admin/AdminCarousel.jsx";
 import ServicesAdmin from "./components/Admin/AdminServices.jsx";
+import Products from "./routes/Products.jsx";
 
 const MainLayout = ({ children }) => (
   <div className="App">
@@ -47,6 +48,11 @@ function App() {
         <Route path="/Contact">
           <MainLayout>
             <Contact />
+          </MainLayout>
+        </Route>
+        <Route path="/Products">
+          <MainLayout>
+            <Products />
           </MainLayout>
         </Route>
         <Route path="/login">
