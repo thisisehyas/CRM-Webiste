@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import axios from "axios";
 import CarouselAdmin from "../Admin/AdminCarousel";
+import "@testing-library/jest-dom";
 
 jest.mock("axios");
 
@@ -77,6 +78,7 @@ describe("CarouselAdmin", () => {
     // Verify that the new image is added to the carousel
     await waitFor(() => {
       const newImage = screen.getByAltText("Image 4");
+      expect(newImage).toBeInTheDocument();
     });
   });
 
