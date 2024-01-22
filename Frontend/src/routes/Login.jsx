@@ -91,3 +91,4 @@ export default Login;
 // THINGS TO FIX:
 //  - The icons need to be in the input fileds.
 //  - The pattern that needs to be checked for both of the inputs.
+//  - in the moblie view it doesn't look that much good. the button
