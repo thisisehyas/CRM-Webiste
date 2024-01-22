@@ -12,6 +12,8 @@ import SignIn from "./routes/SignIn.jsx";
 import CarouselAdmin from "./components/Admin/AdminCarousel.jsx";
 import ServicesAdmin from "./components/Admin/AdminServices.jsx";
 import Products from "./routes/Products.jsx";
+import { Navbar } from "react-bootstrap";
+import EachProduct from "./routes/EachProduct.jsx";
 
 const MainLayout = ({ children }) => (
   <div className="App">
@@ -64,6 +66,12 @@ function App() {
         <Route path="/testing">
           <CarouselAdmin />
           <ServicesAdmin />
+        </Route>
+        {/* <Route path="/product/:productName"> */}
+        <Route path="/product1">
+         <MainLayout>
+          <EachProduct/>
+         </MainLayout>
         </Route>
       </Switch>
     </Router>
