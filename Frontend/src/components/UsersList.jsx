@@ -1,5 +1,6 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import { Button, Container } from "react-bootstrap";
+import "../styles/fontSize.css";
 
 const UsersList = () => {
   return (
@@ -21,8 +22,15 @@ const UsersList = () => {
         >
           نام کاربر
           <div className="d-flex ">
-            <Button className="btn btn-danger mr-2">حذف کاربر</Button>
-            <Button className="btn btn-success ">مشاهده اطلاعات</Button>
+            <Button
+              className="btn btn-danger change-font-btn"
+              style={{ marginLeft: "3px" }}
+            >
+              حذف کاربر
+            </Button>
+            <Button className="btn btn-success change-font-btn">
+              مشاهده اطلاعات
+            </Button>
           </div>
         </ListGroup.Item>
         <ListGroup.Item
@@ -31,8 +39,15 @@ const UsersList = () => {
         >
           نام کاربر
           <div className="d-flex">
-            <Button className="btn btn-danger">حذف کاربر</Button>
-            <Button className="btn btn-success ">مشاهده اطلاعات</Button>
+            <Button
+              className="btn btn-danger change-font-btn"
+              style={{ marginLeft: "3px" }}
+            >
+              حذف کاربر
+            </Button>
+            <Button className="btn btn-success change-font-btn ">
+              مشاهده اطلاعات
+            </Button>
           </div>
         </ListGroup.Item>
         <ListGroup.Item
@@ -41,8 +56,15 @@ const UsersList = () => {
         >
           نام کاربر
           <div className="d-flex">
-            <Button className="btn btn-danger">حذف کاربر</Button>
-            <Button className="btn btn-success ">مشاهده اطلاعات</Button>
+            <Button
+              className="btn btn-danger change-font-btn"
+              style={{ marginLeft: "3px" }}
+            >
+              حذف کاربر
+            </Button>
+            <Button className="btn btn-success change-font-btn ">
+              مشاهده اطلاعات
+            </Button>
           </div>
         </ListGroup.Item>
         <ListGroup.Item
@@ -51,8 +73,15 @@ const UsersList = () => {
         >
           نام کاربر
           <div className="d-flex">
-            <Button className="btn btn-danger">حذف کاربر</Button>
-            <Button className="btn btn-success ">مشاهده اطلاعات</Button>
+            <Button
+              className="btn btn-danger change-font-btn"
+              style={{ marginLeft: "3px" }}
+            >
+              حذف کاربر
+            </Button>
+            <Button className="btn btn-success change-font-btn ">
+              مشاهده اطلاعات
+            </Button>
           </div>
         </ListGroup.Item>
         <ListGroup.Item
@@ -61,8 +90,15 @@ const UsersList = () => {
         >
           نام کاربر
           <div className="d-flex">
-            <Button className="btn btn-danger">حذف کاربر</Button>
-            <Button className="btn btn-success ">مشاهده اطلاعات</Button>
+            <Button
+              className="btn btn-danger change-font-btn"
+              style={{ marginLeft: "3px" }}
+            >
+              حذف کاربر
+            </Button>
+            <Button className="btn btn-success change-font-btn ">
+              مشاهده اطلاعات
+            </Button>
           </div>
         </ListGroup.Item>
       </ListGroup>

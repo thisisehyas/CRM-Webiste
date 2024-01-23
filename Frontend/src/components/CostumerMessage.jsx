@@ -20,36 +20,35 @@ const CostumerMessage = () => {
           className="d-flex justify-content-between align-items-start item"
         >
           نام مشتری
-          <Button className="btn btn-danger change-font">مشاهده</Button>
+          <Button className="btn btn-danger change-font-btn">مشاهده</Button>
         </ListGroup.Item>
         <ListGroup.Item
           as="li"
           className="d-flex justify-content-between align-items-start item"
         >
           نام مشتری
-          <Button className="btn btn-danger change-font">مشاهده</Button>
+          <Button className="btn btn-danger change-font-btn">مشاهده</Button>
         </ListGroup.Item>
         <ListGroup.Item
           as="li"
           className="d-flex justify-content-between align-items-start item"
         >
           نام مشتری
-          <Button className="btn btn-danger change-font">مشاهده</Button>
+          <Button className="btn btn-danger change-font-btn">مشاهده</Button>
         </ListGroup.Item>
         <ListGroup.Item
           as="li"
           className="d-flex justify-content-between align-items-start item"
         >
           نام مشتری
-          <Button className="btn btn-danger change-font">مشاهده</Button>
+          <Button className="btn btn-danger change-font-btn">مشاهده</Button>
         </ListGroup.Item>
         <ListGroup.Item
           as="li"
           className="d-flex justify-content-between align-items-start item"
         >
           نام مشتری
-          <Button className="btn btn-danger change-font">مشاهده</Button>
-          
+          <Button className="btn btn-danger change-font-btn">مشاهده</Button>
         </ListGroup.Item>
       </ListGroup>
     </Container>
