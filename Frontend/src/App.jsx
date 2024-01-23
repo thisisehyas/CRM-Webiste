@@ -15,6 +15,7 @@ import Products from "./routes/Products.jsx";
 import { Navbar } from "react-bootstrap";
 import EachProduct from "./routes/EachProduct.jsx";
 import Category from "./routes/Category.jsx";
+import AdminPanel from "./routes/AdminPanel.jsx";
 
 const MainLayout = ({ children }) => (
   <div className="App">
@@ -78,6 +79,10 @@ function App() {
           <MainLayout>
             <Category />
           </MainLayout>
+        </Route>
+        {/* shouldn't be here. should only be rendered for the admin when they log in. */}
+        <Route path="/AdminPanel">
+          <AdminPanel />
         </Route>
       </Switch>
     </Router>
