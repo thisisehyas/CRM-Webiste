@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import Container from "react-bootstrap/esm/Container";
 import "../styles/footer.css";
+import { Link } from "react-router-dom";
 
 const footer1 = () => {
   return (
@@ -25,10 +26,10 @@ const footer1 = () => {
         <div className="col-6 col-lg-4 second">
           <h6 className="text-center">:دسترسی سریع</h6>
           <div className="links">
-            <a href="">درباره ما</a>
-            <a href="">محصولات</a>
-            <a href="">خدمات</a>
-            <a href="">نمونه کارها</a>
+            <Link to="/About">درباره ما</Link>
+            <Link to="/Products">محصولات</Link>
+            <Link to="/Services">خدمات</Link>
+            <Link to="/SampleWorks">نمونه کارها</Link>
           </div>
         </div>
         <div className="col-6 col-lg-3 third hide-on-small-screen">
@@ -118,8 +119,4 @@ export default footer1;
 //  - The icons should be linked to social medias of the company.
 //  - The google maps should be linked to the real location of the comapny.
 
-//  - The footer should be sticky at the end of the page.
-
 //  - The font family could be anything better.
-
-//  - The second column related to دسترسی سریع should be a little more to the right.

@@ -15,7 +15,7 @@ const Products = () => {
         <Badge className="mx-auto text-center myBadge">دسته‌بندی‌ها </Badge>
       </Container>
       <CategoryCards />
-      <ProductsCols/>
+      <ProductsCols badgeName="همه‌ی محصولات" containName="true"/>
     </>
   );
 };

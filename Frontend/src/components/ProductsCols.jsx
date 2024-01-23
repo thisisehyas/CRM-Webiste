@@ -63,7 +63,7 @@ import Card from "react-bootstrap/Card";
 import "../styles/badge.css";
 import Spinner from "react-bootstrap/Spinner";
 
-const ProductsCols = () => {
+const ProductsCols = (props) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -114,14 +114,12 @@ const ProductsCols = () => {
   return (
     <>
       <Container className="text-center">
-        <Badge className="mx-auto text-center myBadge">
-          پربازدیدترین محصولات
-        </Badge>
+        <Badge className="mx-auto text-center myBadge">{props.badgeName}</Badge>
       </Container>
       <Container>
         <div className="row">
           {products.map((product) => (
-            <div key={product.id} className="col-6 col-md-4 mb-3 mt-5">
+            <div key={product.id} className="col-6 col-md-4 mb-5 mt-5">
               <Card
                 style={{
                   backgroundColor: "#D9D9D9",
@@ -143,6 +141,20 @@ const ProductsCols = () => {
                   />
                 </div>
               </Card>
+
+              {props.containName ? (
+                <span
+                  style={{
+                    display: "block",
+                    textAlign: "center",
+                    margin: "auto",
+                  }}
+                >
+                  نام دستگاه
+                </span>
+              ) : (
+                ""
+              )}
             </div>
           ))}
         </div>

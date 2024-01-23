@@ -14,6 +14,7 @@ import ServicesAdmin from "./components/Admin/AdminServices.jsx";
 import Products from "./routes/Products.jsx";
 import { Navbar } from "react-bootstrap";
 import EachProduct from "./routes/EachProduct.jsx";
+import Category from "./routes/Category.jsx";
 
 const MainLayout = ({ children }) => (
   <div className="App">
@@ -69,9 +70,14 @@ function App() {
         </Route>
         {/* <Route path="/product/:productName"> */}
         <Route path="/product1">
-         <MainLayout>
-          <EachProduct/>
-         </MainLayout>
+          <MainLayout>
+            <EachProduct />
+          </MainLayout>
+        </Route>
+        <Route path="/category1">
+          <MainLayout>
+            <Category />
+          </MainLayout>
         </Route>
       </Switch>
     </Router>

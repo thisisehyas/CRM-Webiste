@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <Carousel1 />
       <Card1 />
-      <ProductsCols />
+      <ProductsCols badgeName="پربازدیدترین محصولات" />
     </>
   );
 };
