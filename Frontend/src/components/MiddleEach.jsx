@@ -7,9 +7,9 @@ import "../styles/fontSize.css";
 const MiddleEach = (props) => {
   return (
     <>
-      <Container>
+      <Container className="mt-3">
         <Row>
-          <Col>
+          <Col className="d-flex align-items-stretch">
             <p
               className="change-font first-p"
               style={{ direction: "rtl", textAlign: "right" }}
@@ -27,7 +27,7 @@ const MiddleEach = (props) => {
               دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
             </p>
           </Col>
-          <Col>
+          <Col className="d-flex align-items-stretch">
             <Image
               style={{ width: "70%", marginLeft: "20%" }}
               src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/111/750/original/produkt_g64-1_1.png?1705960740"
@@ -36,7 +36,7 @@ const MiddleEach = (props) => {
           </Col>
         </Row>
         <Row>
-          <Col className="d-flex align-items-row">
+          <Col className="d-flex align-items-row d-flex align-items-stretch">
             <Row>
               <Col className="mb-3">
                 <Image
@@ -58,7 +58,7 @@ const MiddleEach = (props) => {
                   src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/111/755/original/ruttmann_sortierprodukt_04-300x300_1.png?1705962968"
                 ></Image>
               </Col>
-              <Col className="ml-2">
+              <Col className="ml-">
                 <Image
                   className="sub-image"
                   src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/111/756/original/ruttmann_sortierprodukt_02-300x300_1.png?1705962979"
@@ -66,9 +66,22 @@ const MiddleEach = (props) => {
               </Col>
             </Row>
           </Col>
-          <Col>
+          <Col className="d-flex align-items-stretch">
             <p className="second-p change-font">
               <h5 className="text-center">مشخصات فنی</h5>
+              <p>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+                استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
+                در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
+                نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد،
+                کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را
+                برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در
+                زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و
+                دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و
+                زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات
+                پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+              </p>
             </p>
           </Col>
         </Row>

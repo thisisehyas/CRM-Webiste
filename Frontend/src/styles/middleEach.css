@@ -12,6 +12,7 @@
 
 @media screen and (max-width: 720px) {
   .sub-image {
-    width: 10vw;
+    width: 25vw;
+    margin-right: 5px;
   }
 }
