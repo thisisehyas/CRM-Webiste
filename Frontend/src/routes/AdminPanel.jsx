@@ -2,6 +2,7 @@ import AdminInfoBox from "../components/AdminInfoBox";
 import RoutesList from "../components/RoutesList";
 import { Row, Col } from "react-bootstrap";
 import CostumerMessage from "../components/CostumerMessage";
+import UsersList from "../components/UsersList";
 
 const AdminPanel = () => {
   return (
@@ -9,6 +10,7 @@ const AdminPanel = () => {
       <Col md={6} xs={12}>
         <AdminInfoBox />
         <CostumerMessage />
+        <UsersList />
       </Col>
 
       <Col md={6} xs={12}>
@@ -21,3 +23,5 @@ const AdminPanel = () => {
 export default AdminPanel;
 
 // i want the length to stretch and be the same size
+
+// if you add the online QA part you can put it under the routeslist

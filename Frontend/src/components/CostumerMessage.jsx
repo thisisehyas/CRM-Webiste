@@ -5,7 +5,7 @@ import "../styles/costumerMessage.css";
 const CostumerMessage = () => {
   return (
     <Container
-      className="mt-4 change-font"
+      className="mt-4 pb-3 change-font"
       style={{
         direction: "rtl",
         textAlign: "right",
@@ -19,36 +19,37 @@ const CostumerMessage = () => {
           as="li"
           className="d-flex justify-content-between align-items-start item"
         >
-          اطلاعات مشتری
+          نام مشتری
           <Button className="btn btn-danger change-font">مشاهده</Button>
         </ListGroup.Item>
         <ListGroup.Item
           as="li"
           className="d-flex justify-content-between align-items-start item"
         >
-          اطلاعات مشتری
+          نام مشتری
           <Button className="btn btn-danger change-font">مشاهده</Button>
         </ListGroup.Item>
         <ListGroup.Item
           as="li"
           className="d-flex justify-content-between align-items-start item"
         >
-          اطلاعات مشتری
+          نام مشتری
           <Button className="btn btn-danger change-font">مشاهده</Button>
         </ListGroup.Item>
         <ListGroup.Item
           as="li"
           className="d-flex justify-content-between align-items-start item"
         >
-          اطلاعات مشتری
+          نام مشتری
           <Button className="btn btn-danger change-font">مشاهده</Button>
         </ListGroup.Item>
         <ListGroup.Item
           as="li"
           className="d-flex justify-content-between align-items-start item"
         >
-          اطلاعات مشتری
+          نام مشتری
           <Button className="btn btn-danger change-font">مشاهده</Button>
+          
         </ListGroup.Item>
       </ListGroup>
     </Container>
