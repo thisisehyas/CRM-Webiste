@@ -1,13 +1,14 @@
 import AdminInfoBox from "../components/AdminInfoBox";
 import RoutesList from "../components/RoutesList";
 import { Row, Col } from "react-bootstrap";
+import CostumerMessage from "../components/CostumerMessage";
 
 const AdminPanel = () => {
   return (
     <Row className="mx-auto">
       <Col md={6} xs={12}>
         <AdminInfoBox />
-        {/* <Messages /> */}
+        <CostumerMessage />
       </Col>
 
       <Col md={6} xs={12}>
