@@ -29,7 +29,7 @@ const MiddleEach = (props) => {
           </Col>
           <Col className="d-flex align-items-stretch">
             <Image
-              style={{ width: "70%", marginLeft: "20%" }}
+              style={{ width: "80%", marginLeft: "20%" }}
               src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/111/750/original/produkt_g64-1_1.png?1705960740"
               alt="عکس محصول"
             ></Image>
@@ -67,7 +67,10 @@ const MiddleEach = (props) => {
             </Row>
           </Col>
           <Col className="d-flex align-items-stretch">
-            <p className="second-p change-font">
+            <p
+              className="second-p change-font"
+              style={{ direction: "rtl", textAlign: "right" }}
+            >
               <h5 className="text-center">مشخصات فنی</h5>
               <p>
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
