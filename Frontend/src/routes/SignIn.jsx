@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/signin.css";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { setAccessToken } from "../components/authUtils.jsx";
 
 const SignIn = () => {
   return (
@@ -24,7 +25,7 @@ const SignIn = () => {
         src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/109/251/original/0c34607cbf3244f9969b4a57cdcebdc9_1.png?1704396541"
         alt="لوگوی شرکت"
       ></Image>
-      <hr
+      {/* <hr
         style={{
           width: "100%",
           borderTop: "3px solid #D6D5D5",
@@ -32,7 +33,7 @@ const SignIn = () => {
           top: "30%",
           transform: "translateY(-50%)",
         }}
-      />
+      /> */}
       <Form
         style={{
           direction: "rtl",
@@ -50,10 +51,29 @@ const SignIn = () => {
               className="change-font form-control"
               required
               type="text"
-              placeholder="نام و نام خانوادگی "
-              pattern="^[\u0600-\u06FF\s]+(?:[\s.'-]\S+)*$"
+              placeholder="نام "
             />
           </Col>
+          <Col md={6} className="costume-col mb-1 mt-5">
+            <Form.Control
+              className="change-font form-control"
+              required
+              type="text"
+              placeholder="نام خانوادگی"
+            />
+          </Col>
+        </Row>
+
+        <Row>
+          {/* <Col md={6} className="mb-4 mt-5">
+            <Form.Control
+              className="change-font form-control"
+              required
+              type="text"
+              placeholder="شماره تلفن همراه"
+              pattern="^09\d{9}$"
+            />
+          </Col> */}
           <Col md={6} className="costume-col mb-1 mt-5">
             <Form.Control
               className="change-font form-control"
@@ -62,6 +82,18 @@ const SignIn = () => {
               placeholder="نام کاربری"
               pattern="^[a-zA-Z0-9_\-]{3,}$"
             />
+          </Col>
+          <Col md={6} className=" costume-col mb-1 mt-5">
+            <Form.Control
+              className="change-font form-control"
+              required
+              type="email"
+              placeholder="ایمیل"
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+            />
+            <Form.Control.Feedback type="invalid">
+              ایمیل معتبر نیست.
+            </Form.Control.Feedback>
           </Col>
         </Row>
 
@@ -81,30 +113,6 @@ const SignIn = () => {
               type="password"
               placeholder="تکرار رمز عبور"
             />
-          </Col>
-        </Row>
-
-        <Row>
-          <Col md={6} className="mb-4 mt-5">
-            <Form.Control
-              className="change-font form-control"
-              required
-              type="text"
-              placeholder="شماره تلفن همراه"
-              pattern="^09\d{9}$"
-            />
-          </Col>
-          <Col md={6} className="costume-col mb-4 mt-5">
-            <Form.Control
-              className="change-font form-control"
-              required
-              type="email"
-              placeholder="ایمیل"
-              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-            />
-            <Form.Control.Feedback type="invalid">
-              ایمیل معتبر نیست.
-            </Form.Control.Feedback>
           </Col>
         </Row>
 
