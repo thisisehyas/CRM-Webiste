@@ -9,14 +9,14 @@ import ProductsCols from "../components/ProductsCols";
 
 const Products = () => {
   return (
-    <>
+    <div style={{ overflow: "hidden" }}>
       <Header title="محصولات" />
       <Container className="text-center">
         <Badge className="mx-auto text-center myBadge">دسته‌بندی‌ها </Badge>
       </Container>
       <CategoryCards />
       <ProductsCols badgeName="همه‌ی محصولات" containName="true"/>
-    </>
+    </div>
   );
 };
 

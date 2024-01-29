@@ -1,10 +1,9 @@
-import ProductsCols from "../components/ProductsCols";
-import Header from "../components/Header.jsx";
-import CategoryMiddle from "../components/CategoryMiddle.jsx";
+import Header from "../../Header.jsx";
+import CategoryMiddle from "../../CategoryMiddle.jsx";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import CategoryProductsCols from "../components/CategoryProductCols.jsx";
+import AdminProductCols from "../AdminProductCols.jsx";
 
 const Category = () => {
   const [categoryData, setCategoryData] = useState(null);
@@ -34,8 +33,8 @@ const Category = () => {
       {categoryData && (
         <>
           <Header title={categoryData.title} svg="1" />
-          <CategoryMiddle />
-          <CategoryProductsCols
+          {/* <CategoryMiddle /> */}
+          <AdminProductCols
             badgeName="محصولات"
             containName="true"
             categoryId={categoryData.id}

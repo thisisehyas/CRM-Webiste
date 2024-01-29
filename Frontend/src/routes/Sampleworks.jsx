@@ -8,7 +8,7 @@ import "../styles/fontSize.css";
 
 const SampleWorks = () => {
   return (
-    <>
+    <div style={{ overflowX: "hidden" }}>
       <Header title="نمونه‌کارها" />
       <Container className="mt-4">
         {[1, 2, 3, 4, 5].map((index) => (
@@ -40,7 +40,7 @@ const SampleWorks = () => {
               </Card.Body>
               <Card.Img
                 variant="top"
-                src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/109/196/original/image_11_%281%29.png?1704374814"
+                src="http://127.0.0.1:8000/machine_pics/anysort_product_L1060.png"
                 style={{
                   flex: 1,
                   objectFit: "cover",
@@ -52,8 +52,9 @@ const SampleWorks = () => {
           </Row>
         ))}
       </Container>
-    </>
+    </div>
   );
 };
 
 export default SampleWorks;
+

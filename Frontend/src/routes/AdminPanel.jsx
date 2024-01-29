@@ -1,5 +1,5 @@
-import AdminInfoBox from "../components/AdminInfoBox";
-import RoutesList from "../components/RoutesList";
+import AdminInfoBox from "../components/Admin/AdminInfoBox";
+import RoutesList from "../components/Admin/RoutesList";
 import { Row, Col } from "react-bootstrap";
 import CostumerMessage from "../components/CostumerMessage";
 import UsersList from "../components/UsersList";
@@ -7,22 +7,32 @@ import { Navbar, Container } from "react-bootstrap";
 
 const AdminPanel = () => {
   return (
-    <>
+    <div style={{ overflowX: "hidden", height: "100%", margin: "0" }}>
       <Row>
-        <Navbar expand="lg" className="bg-body-tertiary">
-          <Container fluid className="nav-container">
+        <Navbar
+          expand="lg"
+          style={{ boxShadow: "0 4px 2px -2px rgba(0, 0, 0, 0.1)" }}
+          className="bg-body-tertiary"
+        >
+          <Container fluid>
             <Navbar.Brand className="navbar-brand mx-auto">
               <img
                 className="logo"
                 src="../images/logo-navbar.png"
                 alt="لوگوی شرکت"
-                style={{ width: "98px", height: "118" }}
+                style={{ width: "98px", height: "100px" }}
               />
             </Navbar.Brand>
           </Container>
         </Navbar>
       </Row>
-      <Row className="mx-auto">
+      <Row
+        style={{
+          background:
+            "linear-gradient(to right, rgba(153, 153, 153, 0.1), rgba(153, 153, 153, 0.17))",
+        }}
+        className="mx-auto"
+      >
         <Col md={6} xs={12}>
           <AdminInfoBox />
           <CostumerMessage />
@@ -33,7 +43,7 @@ const AdminPanel = () => {
           <RoutesList />
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

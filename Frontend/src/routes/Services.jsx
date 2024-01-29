@@ -10,7 +10,7 @@ import React from "react";
 
 const Services = () => {
   return (
-    <>
+    <div style={{ overflowX: "hidden" }}>
       <Header title="خدمات" />
       <div className="services-text change-font">
         <p style={{ direction: "rtl", textAlign: "right" }}>
@@ -30,7 +30,7 @@ const Services = () => {
       </div>
       <Container fluid>
         <Row className="mx-auto">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((index) => (
+          {[1, 2, 3, 4].map((index) => (
             <Col key={index}>
               <Card
                 className="m-2 mx-auto"
@@ -38,10 +38,13 @@ const Services = () => {
               >
                 <Card.Img
                   variant="top"
-                  src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/109/180/original/image_14.png?1704367468"
+                  src="http://127.0.0.1:8000/machine_pics/services.png"
                 />
                 <Card.Body>
-                  <Card.Title data-testid={`default-title-${index}`} className="text-center change-font-title">
+                  <Card.Title
+                    data-testid={`default-title-${index}`}
+                    className="text-center change-font-title"
+                  >
                     مشاوره های رایگان
                   </Card.Title>
                   <Card.Text
@@ -60,7 +63,7 @@ const Services = () => {
           ))}
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 

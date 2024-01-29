@@ -16,6 +16,9 @@ import { Navbar } from "react-bootstrap";
 import EachProduct from "./routes/EachProduct.jsx";
 import Category from "./routes/Category.jsx";
 import AdminPanel from "./routes/AdminPanel.jsx";
+import AdminHome from "./components/Admin/RoutesAdmin/AdminHome.jsx";
+import AdminProducts from "./components/Admin/RoutesAdmin/AdminProducts.jsx";
+import AdminCategory from "./components/Admin/RoutesAdmin/AdminCategory.jsx";
 
 const MainLayout = ({ children }) => (
   <div className="App">
@@ -69,7 +72,6 @@ function App() {
           <CarouselAdmin />
           <ServicesAdmin />
         </Route>
-        {/* <Route path="/product/:productName"> */}
         <Route path="/product1">
           <MainLayout>
             <EachProduct />
@@ -80,9 +82,28 @@ function App() {
             <Category />
           </MainLayout>
         </Route>
-        {/* shouldn't be here. should only be rendered for the admin when they log in. */}
         <Route path="/AdminPanel">
           <AdminPanel />
+        </Route>
+        <Route path="/AdminHome">
+          <MainLayout>
+            <AdminHome />
+          </MainLayout>
+        </Route>
+        <Route path="/category/:id">
+          <MainLayout>
+            <Category />
+          </MainLayout>
+        </Route>
+        <Route path="/AdminProducts">
+          <MainLayout>
+            <AdminProducts />
+          </MainLayout>
+        </Route>
+        <Route path="/AdminCategory/:id">
+          <MainLayout>
+            <AdminCategory />
+          </MainLayout>
         </Route>
       </Switch>
     </Router>
