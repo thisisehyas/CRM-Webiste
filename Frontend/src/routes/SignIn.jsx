@@ -3,59 +3,72 @@ import Image from "react-bootstrap/esm/Image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/signin.css";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import React, { useState } from "react";
 
 const SignIn = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    email: "",
-    first_name: "",
-    last_name: "",
-  });
+  const [error, setError] = useState(null);
+  const history = useHistory();
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const handleRegistration = async (event) => {
+    event.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const formData = new FormData(event.target);
+
+    const jsonData = {};
+    formData.forEach((value, key) => {
+      jsonData[key] = value;
+    });
+
+    if (jsonData.password !== confirmPassword) {
+      setError("رمز عبور و تکرار آن باید یکسان باشند.");
+      return;
+    }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/auth/users", {
+      const response = await fetch("http://127.0.0.1:8000/auth/users/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        Authorization:
-          "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2OTM4Nzk0LCJpYXQiOjE3MDY0MjAzOTQsImp0aSI6IjhhNTg1ODNjOGY0MTRjOTk4MjlmNmZlZWU3MzJkM2Y0IiwidXNlcl9pZCI6NX0.jlxNM7rCnp2HZ4GUlvH9W0ja-m59zTC1tT1kqBrPG8Y",
-        body: JSON.stringify(formData),
+        body: JSON.stringify(jsonData),
       });
 
-      console.log("Request sent. Waiting for response...");
-
-      const responseData = await response.json();
-
-      console.log("Response received:", response);
-
       if (response.ok) {
-        console.log("User successfully registered:", responseData);
+        const responseData = await response.json();
+        console.log("Registration successful: ", responseData);
+        setError("");
 
-        // You may want to redirect the user or perform other actions upon successful registration
+        setTimeout(() => {
+          history.push({
+            pathname: "/Login",
+            state: { preFilledUsername: jsonData.username },
+          });
+        }, 2000);
       } else {
-        console.error("Error registering user:", response.statusText);
-        // Handle error, show error message, etc.
+        const errorData = await response.json();
+        console.log("ثبت نام ناموفق: ", response.statusText, errorData);
+
+        const errorMessages = Object.values(errorData)
+          .flat()
+          .map((error) => error);
+
+        setError(`ثبت‌نام ناموفق: ${errorMessages.join(" ")}`);
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.log("Error during registration: ", error);
+      // setError(`Error during registration: ${errorData}`);
     }
+  };
+
+  const handleConfirmPasswordChange = (event) => {
+    setConfirmPassword(event.target.value);
   };
 
   return (
     <Container
-      className="mt-3 mb-2 p-0 d-flex align-items-center justify-content-center flex-column"
+      className="mt-5 mb-2 p-0 d-flex align-items-center justify-content-center flex-column"
       style={{
         width: "100%",
         minHeight: "80vh",
@@ -90,7 +103,7 @@ const SignIn = () => {
           position: "relative",
           zIndex: 1,
         }}
-        onSubmit={handleSubmit}
+        onSubmit={handleRegistration}
       >
         <Row>
           <Col md={6} className="mb-1 mt-5">
@@ -99,9 +112,7 @@ const SignIn = () => {
               required
               type="text"
               placeholder="نام "
-              name="first_name" // Updated name attribute
-              value={formData.first_name}
-              onChange={handleInputChange}
+              name="first_name"
             />
           </Col>
           <Col md={6} className="costume-col mb-1 mt-5">
@@ -110,23 +121,12 @@ const SignIn = () => {
               required
               type="text"
               placeholder="نام خانوادگی"
-              name="last_name" // Updated name attribute
-              value={formData.last_name}
-              onChange={handleInputChange}
+              name="last_name"
             />
           </Col>
         </Row>
 
         <Row>
-          {/* <Col md={6} className="mb-4 mt-5">
-            <Form.Control
-              className="change-font form-control"
-              required
-              type="text"
-              placeholder="شماره تلفن همراه"
-              pattern="^09\d{9}$"
-            />
-          </Col> */}
           <Col md={6} className="costume-col mb-1 mt-5">
             <Form.Control
               className="change-font form-control"
@@ -135,8 +135,6 @@ const SignIn = () => {
               placeholder="نام کاربری"
               pattern="^[a-zA-Z0-9_\-]{3,}$"
               name="username"
-              value={formData.username}
-              onChange={handleInputChange}
             />
           </Col>
           <Col md={6} className=" costume-col mb-1 mt-5">
@@ -147,8 +145,6 @@ const SignIn = () => {
               placeholder="ایمیل"
               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
               name="email"
-              value={formData.email}
-              onChange={handleInputChange}
             />
             <Form.Control.Feedback type="invalid">
               ایمیل معتبر نیست.
@@ -164,8 +160,6 @@ const SignIn = () => {
               type="password"
               placeholder="رمز عبور"
               name="password"
-              value={formData.password}
-              onChange={handleInputChange}
             />
           </Col>
           <Col md={6} className="costume-col mb-1 mt-5">
@@ -174,9 +168,7 @@ const SignIn = () => {
               required
               type="password"
               placeholder="تکرار رمز عبور"
-              // name="confirmPassword" // You may want to add a confirmPassword field
-              // value={formData.confirmPassword}
-              // onChange={handleInputChange}
+              onChange={handleConfirmPasswordChange}
             />
           </Col>
         </Row>
@@ -188,6 +180,24 @@ const SignIn = () => {
           ثبت نام
         </Button>
       </Form>
+      {error && (
+        <div
+          style={{ textAlign: "right", direction: "rtl" }}
+          className="alert alert-danger m-3 change-font"
+          role="alert"
+        >
+          {error}
+        </div>
+      )}
+      {error == "" && (
+        <div
+          style={{ textAlign: "right", direction: "rtl" }}
+          className="alert alert-success m-3 change-font"
+          role="alert"
+        >
+          ثبت نام با موفقیت انجام شد. در حال انتقال به صفحه ورود...
+        </div>
+      )}
       <Form.Text
         style={{ textAlign: "right", direction: "rtl" }}
         className="mb-3 text-muted form-text"
@@ -208,3 +218,6 @@ export default SignIn;
 
 //confirm password functionality
 //showing the errors from the backend
+
+//wanted to prefill the username field when redirecting ot login
+//page from register.

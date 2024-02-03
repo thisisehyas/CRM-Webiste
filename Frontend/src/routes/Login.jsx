@@ -15,7 +15,7 @@ import {
   removeAccessToken,
 } from "../components/authUtils.jsx";
 
-const Login = () => {
+const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -153,7 +153,7 @@ const Login = () => {
             required
             type="text"
             placeholder="نام کاربری خود را وارد کنید."
-            value={username}
+            // value={props.location.state && props.location.state.preFilledUsername ? props.location.state.preFilledUsername : username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </Form.Group>
@@ -203,3 +203,4 @@ export default Login;
 //  - The icons need to be in the input fileds.
 //  - The pattern that needs to be checked for both of the inputs.
 //  - in the moblie view it doesn't look that much good. the button
+//  - auto fill the username field when the user has come from the register page.

@@ -30,7 +30,7 @@ const Category = () => {
   };
 
   return (
-    <>
+    <div>
       {categoryData && (
         <>
           <Header title={categoryData.title} svg="1" />
@@ -42,7 +42,7 @@ const Category = () => {
           />
         </>
       )}
-    </>
+    </div>
   );
 };
 
