@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import "../styles/badge.css";
 import Spinner from "react-bootstrap/Spinner";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ProductsCols = (props) => {
   const [products, setProducts] = useState([]);
@@ -77,7 +78,13 @@ const ProductsCols = (props) => {
       <Container>
         <div className="row">
           {products.map((product) => (
-            <div key={product.id} className="col-6 col-md-4 mb-5 mt-5">
+            <Link
+              as="div"
+              to={`/product/${product.id}`}
+              key={product.id}
+              className="col-6 col-md-4 mb-5 mt-5"
+              style={{ textDecoration: "none", color: "#000" }}
+            >
               <Card
                 style={{
                   backgroundColor: "#D9D9D9",
@@ -113,7 +120,7 @@ const ProductsCols = (props) => {
               ) : (
                 ""
               )}
-            </div>
+            </Link>
           ))}
         </div>
         {loading && (

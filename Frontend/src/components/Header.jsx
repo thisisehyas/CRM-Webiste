@@ -8,7 +8,7 @@ const Header = (props) => {
     <div className="headerContainer">
       <Image
         className="headerImage"
-        style={{ marginTop: "90px", maxHeight: "40vh" }}
+        style={{ marginTop: "90px", maxHeight: "40vh", maxWidth: "100%" }}
         // src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/108/872/original/e6a7e84d075ed453954d6d882beacf0f_1.png?1704124150"
         src="http://127.0.0.1:8000/machine_pics/header.jpg"
         alt="عکس پس زمینه هدر"
@@ -51,5 +51,4 @@ const Header = (props) => {
 export default Header;
 
 // THINGS TO SOLVE:
-//  - The watermark on the header background should be gone. it looks
-//      improfessional.
+//  - we need a better image for the header.

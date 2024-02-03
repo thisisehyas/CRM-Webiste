@@ -14,6 +14,9 @@ const MiddleEach = (props) => {
               className="change-font first-p"
               style={{ direction: "rtl", textAlign: "right" }}
             >
+              <h5 className="text-center">توضیحات</h5>
+              {props.description}
+              <br />
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
               استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
               در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
@@ -29,8 +32,9 @@ const MiddleEach = (props) => {
           </Col>
           <Col className="d-flex align-items-stretch">
             <Image
-              style={{ width: "80%", marginLeft: "20%" }}
-              src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/111/750/original/produkt_g64-1_1.png?1705960740"
+              style={{ marginBottom: "10px", width: "80%", marginLeft: "20%" }}
+              // src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/111/750/original/produkt_g64-1_1.png?1705960740"
+              src={props.picture}
               alt="عکس محصول"
             ></Image>
           </Col>

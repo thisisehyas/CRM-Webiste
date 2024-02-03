@@ -10,7 +10,7 @@ import React from "react";
 
 const Services = () => {
   return (
-    <div style={{ overflowX: "hidden" }}>
+    <div>
       <Header title="خدمات" />
       <div className="services-text change-font">
         <p style={{ direction: "rtl", textAlign: "right" }}>

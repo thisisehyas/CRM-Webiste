@@ -77,11 +77,6 @@ function App() {
             <EachProduct />
           </MainLayout>
         </Route>
-        <Route path="/category1">
-          <MainLayout>
-            <Category />
-          </MainLayout>
-        </Route>
         <Route path="/AdminPanel">
           <AdminPanel />
         </Route>
@@ -103,6 +98,11 @@ function App() {
         <Route path="/AdminCategory/:id">
           <MainLayout>
             <AdminCategory />
+          </MainLayout>
+        </Route>
+        <Route path="/product/:id">
+          <MainLayout>
+            <EachProduct />
           </MainLayout>
         </Route>
       </Switch>

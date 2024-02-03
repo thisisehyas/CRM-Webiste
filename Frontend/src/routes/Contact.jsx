@@ -116,7 +116,7 @@ const Contact = () => {
     setIsFormSubmitted(false);
   };
   return (
-    <div style={{ overflowX: "hidden" }}>
+    <div>
       <Header title="تماس‌ با‌ ما" />
       <Container className="mt-4 change-font">
         <Row>

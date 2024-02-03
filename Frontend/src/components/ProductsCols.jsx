@@ -1,4 +1,3 @@
-
 // import React, { useState, useEffect } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import Container from "react-bootstrap/Container";
@@ -135,9 +134,6 @@
 // fetching is happening but you'll need to make the styles right
 // the number of machines should be at least
 
-
-
-
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
@@ -146,6 +142,7 @@ import Card from "react-bootstrap/Card";
 import "../styles/badge.css";
 import Spinner from "react-bootstrap/Spinner";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ProductsCols = (props) => {
   const [products, setProducts] = useState([]);
@@ -191,7 +188,13 @@ const ProductsCols = (props) => {
       <Container>
         <div className="row">
           {products.map((product) => (
-            <div key={product.id} className="col-6 col-md-4 mb-5 mt-5">
+            <Link
+              as="div"
+              to={`/product/${product.id}`}
+              key={product.id}
+              className="col-6 col-md-4 mb-5 mt-5"
+              style={{ textDecoration: "none", color: "#000" }}
+            >
               <Card
                 style={{
                   backgroundColor: "#D9D9D9",
@@ -227,7 +230,7 @@ const ProductsCols = (props) => {
               ) : (
                 ""
               )}
-            </div>
+            </Link>
           ))}
         </div>
         {loading && (

@@ -8,7 +8,7 @@ import "../styles/fontSize.css";
 
 const SampleWorks = () => {
   return (
-    <div style={{ overflowX: "hidden" }}>
+    <div>
       <Header title="نمونه‌کارها" />
       <Container className="mt-4">
         {[1, 2, 3, 4, 5].map((index) => (
@@ -57,4 +57,3 @@ const SampleWorks = () => {
 };
 
 export default SampleWorks;
-
