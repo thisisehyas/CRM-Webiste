@@ -1,61 +1,164 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/Container";
-import Badge from "react-bootstrap/Badge";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
-import Spinner from "react-bootstrap/Spinner";
 import axios from "axios";
 import "../../styles/badge.css";
 import "../../styles/fadeButton.css";
 import { getAccessToken } from "../authUtils";
+import { Link, useHistory } from "react-router-dom";
+import {
+  Container,
+  Badge,
+  Card,
+  Button,
+  Modal,
+  Form,
+  Spinner,
+  Row,
+  Col,
+} from "react-bootstrap";
 
 const ProductsCols = (props) => {
+  const history = useHistory();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hasMoreData, setHasMoreData] = useState(true);
 
-  // State for the modal
   const [showModal, setShowModal] = useState(false);
-
-  // State for new product form
   const [newProduct, setNewProduct] = useState({
     title: "",
+    category: props.categoryId,
     description: "",
-    unit_price: "",
-    picture: "",
+    unit_price: 0,
+    picture: null,
   });
 
-  // Function to toggle the modal
-  const toggleModal = () => setShowModal(!showModal);
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
-  const fetchAllProducts = () => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    console.log(`Updating ${name} to:`, value);
+    setNewProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    console.log("Updating picture to:", file);
+    setNewProduct((prevProduct) => ({
+      ...prevProduct,
+      picture: file,
+    }));
+  };
+
+  const handleAddProduct = () => {
+    const apiUrl = "http://127.0.0.1:8000/machine/";
+
+    console.log("Adding new product...", newProduct);
+
+    axios
+      .post(apiUrl, newProduct, {
+        headers: {
+          Authorization: `JWT ${getAccessToken()}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        console.log("Response from adding product:", response);
+
+        // Update the state to include the newly added product
+        setProducts((prevProducts) => [...prevProducts, response.data]);
+
+        // Close the modal and reset the newProduct state
+        handleCloseModal();
+        setNewProduct({
+          title: "",
+          category: props.categoryId,
+          description: "",
+          unit_price: 0,
+          picture: null,
+        });
+      })
+      .catch((error) => {
+        console.error("Error adding product:", error);
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.error("Response data:", error.response.data);
+          console.error("Response status:", error.response.status);
+          console.error("Response headers:", error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.error(
+            "No response received. Request details:",
+            error.request
+          );
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.error("Error details:", error.message);
+        }
+      });
+  };
+
+  // const fetchAllProducts = () => {
+  //   const apiUrl = `http://127.0.0.1:8000/machine/`;
+
+  //   console.log("Fetching all products...");
+
+  //   axios
+  //     .get(apiUrl)
+  //     .then((response) => {
+  //       console.log("Response from the API:", response);
+
+  //       // Filter products based on the category ID
+  //       const filteredProducts = response.data.results.filter(
+  //         (product) => product.category === props.categoryId
+  //       );
+
+  //       setProducts(filteredProducts);
+  //       setLoading(false);
+
+  //       // Since we fetched all products, there's no need to check for next
+  //       setHasMoreData(false);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching all products:", error);
+  //       setLoading(false);
+  //     });
+  // };
+
+  const fetchAllProducts = async () => {
     const apiUrl = `http://127.0.0.1:8000/machine/`;
+    const allProducts = [];
 
     console.log("Fetching all products...");
 
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        console.log("Response from the API:", response);
-
-        // Filter products based on the category ID
+    const fetchData = async (url) => {
+      try {
+        const response = await axios.get(url);
         const filteredProducts = response.data.results.filter(
           (product) => product.category === props.categoryId
         );
+        allProducts.push(...filteredProducts);
 
-        setProducts(filteredProducts);
-        setLoading(false);
-
-        // Since we fetched all products, there's no need to check for next
-        setHasMoreData(false);
-      })
-      .catch((error) => {
+        if (response.data.next) {
+          // If there is a next page, recursively fetch the next page
+          await fetchData(response.data.next);
+        } else {
+          // All pages fetched, update the state
+          setProducts(allProducts);
+          setLoading(false);
+          setHasMoreData(false);
+        }
+      } catch (error) {
         console.error("Error fetching all products:", error);
         setLoading(false);
-      });
+      }
+    };
+
+    await fetchData(apiUrl);
   };
 
   useEffect(() => {
@@ -64,64 +167,6 @@ const ProductsCols = (props) => {
     );
     fetchAllProducts();
   }, [props.categoryId]); // Re-fetch when category ID changes
-
-  // Function to handle adding a new product
-  const handleAddProduct = () => {
-    // Implement your logic for adding a new product
-    // You can use axios.post to send a POST request to your backend
-    console.log("Adding new product:", newProduct);
-    // After adding, close the modal and fetch updated data
-    toggleModal();
-    fetchAllProducts();
-  };
-
-  // Function to handle deleting a product
-  const handleDeleteProduct = (productId) => {
-    // Implement your logic for deleting a product
-    // You can use axios.delete to send a DELETE request to your backend
-    console.log("Deleting product with ID:", productId);
-    // After deleting, fetch updated data
-    fetchAllProducts();
-  };
-
-  const handleEditProduct = (productId) => {
-    const apiUrl = `http://127.0.0.1:8000/machine/${productId}/`;
-
-    // Find the product to be edited
-    const productToEdit = products.find((product) => product.id === productId);
-
-    // Prepare the updated product data
-    const updatedProduct = {
-      title: newProduct.title || productToEdit.title,
-      category: newProduct.category || productToEdit.category,
-      description: newProduct.description || productToEdit.description,
-      unit_price: newProduct.unit_price || productToEdit.unit_price,
-      picture: newProduct.picture || productToEdit.picture,
-    };
-
-    // Send a PATCH request with the updated data
-    axios
-      .patch(apiUrl, updatedProduct, {
-        headers: {
-          Authorization: `JWT ${getAccessToken()}`,
-        },
-      })
-      .then((response) => {
-        console.log("Response from editing product:", response);
-        fetchAllProducts(); // Fetch updated data
-      })
-      .catch((error) => {
-        console.error("Error editing product:", error);
-      });
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewProduct((prevProduct) => ({
-      ...prevProduct,
-      [name]: value,
-    }));
-  };
 
   const handleProductClick = (productId) => {
     // Implement your logic for handling product click
@@ -151,16 +196,63 @@ const ProductsCols = (props) => {
     };
   }, [products, hasMoreData, props.categoryId]);
 
+  const handleDeleteProduct = (productId) => {
+    const apiUrl = `http://127.0.0.1:8000/machine/${productId}/`;
+
+    axios
+      .delete(apiUrl, {
+        headers: {
+          Authorization: `JWT ${getAccessToken()}`,
+        },
+      })
+      .then((response) => {
+        console.log("Response from deleting product:", response);
+
+        // Update the state to remove the deleted product
+        setProducts((prevProducts) =>
+          prevProducts.filter((product) => product.id !== productId)
+        );
+      })
+      .catch((error) => {
+        console.error("Error deleting product:", error);
+        if (error.response) {
+          console.error("Response data:", error.response.data);
+          console.error("Response status:", error.response.status);
+          console.error("Response headers:", error.response.headers);
+        } else if (error.request) {
+          console.error(
+            "No response received. Request details:",
+            error.request
+          );
+        } else {
+          console.error("Error details:", error.message);
+        }
+      });
+  };
+
   return (
     <>
       <Container className="text-center">
         <Badge className="mx-auto text-center myBadge">{props.badgeName}</Badge>
       </Container>
 
+      {/* Add Product Button */}
+      <Container className="text-center mt-3">
+        <Button variant="success" onClick={handleShowModal}>
+          Add Product
+        </Button>
+      </Container>
+
       <Container>
         <div className="row">
           {products.map((product) => (
-            <div key={product.id} className="col-6 col-md-4 mb-5 mt-5">
+            <Link
+              as="div"
+              to={`/AdminProduct/${product.id}`}
+              key={product.id}
+              className="col-6 col-md-4 mb-5 mt-5"
+              style={{ textDecoration: "none", color: "#000" }}
+            >
               <Card
                 style={{
                   backgroundColor: "#D9D9D9",
@@ -197,45 +289,29 @@ const ProductsCols = (props) => {
               ) : (
                 ""
               )}
-
-              {/* Buttons for editing and deleting */}
-              {/* <div className="mt-2">
-                <Button
-                  variant="outline-danger"
-                  size="sm"
-                  onClick={() => handleDeleteProduct(product.id)}
-                >
-                  Delete
-                </Button>{" "}
-                <Button
-                  variant="outline-secondary"
-                  size="sm"
-                  onClick={() => handleEditProduct(product.id)}
-                >
-                  Edit
-                </Button>
-              </div> */}
-            </div>
+              <Button
+                variant="danger"
+                className="mt-2"
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent the link from navigating
+                  handleDeleteProduct(product.id);
+                }}
+              >
+                Delete
+              </Button>
+            </Link>
           ))}
         </div>
+
         {loading && (
           <div className="text-center mt-5">
             <Spinner animation="grow" variant="success" size="lg" />
             <p className="mt-2">Loading...</p>
           </div>
         )}
-
-        {/* <Button
-          variant="primary"
-          onClick={toggleModal}
-          className="position-fixed bottom-0 end-0 m-4 add-product-button"
-        >
-          Add New Product
-        </Button> */}
       </Container>
-
       {/* Modal for adding a new product */}
-      <Modal show={showModal} onHide={toggleModal}>
+      <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Add New Product</Modal.Title>
         </Modal.Header>
@@ -245,19 +321,17 @@ const ProductsCols = (props) => {
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter title"
+                placeholder="Enter product title"
                 name="title"
                 value={newProduct.title}
                 onChange={handleInputChange}
               />
             </Form.Group>
-
             <Form.Group controlId="formDescription">
               <Form.Label>Description</Form.Label>
               <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder="Enter description"
+                type="text"
+                placeholder="Enter product description"
                 name="description"
                 value={newProduct.description}
                 onChange={handleInputChange}
@@ -276,19 +350,17 @@ const ProductsCols = (props) => {
             </Form.Group>
 
             <Form.Group controlId="formPicture">
-              <Form.Label>Picture URL</Form.Label>
+              <Form.Label>Picture</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Enter picture URL"
+                type="file"
                 name="picture"
-                value={newProduct.picture}
-                onChange={handleInputChange}
+                onChange={handleFileChange}
               />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={toggleModal}>
+          <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>
           <Button variant="primary" onClick={handleAddProduct}>

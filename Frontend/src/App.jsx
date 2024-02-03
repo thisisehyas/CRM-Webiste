@@ -19,6 +19,7 @@ import AdminPanel from "./routes/AdminPanel.jsx";
 import AdminHome from "./components/Admin/RoutesAdmin/AdminHome.jsx";
 import AdminProducts from "./components/Admin/RoutesAdmin/AdminProducts.jsx";
 import AdminCategory from "./components/Admin/RoutesAdmin/AdminCategory.jsx";
+import AdminProduct from "./components/Admin/RoutesAdmin/AdminProduct.jsx";
 
 const MainLayout = ({ children }) => (
   <div className="App">
@@ -103,6 +104,11 @@ function App() {
         <Route path="/product/:id">
           <MainLayout>
             <EachProduct />
+          </MainLayout>
+        </Route>
+        <Route path="/AdminProduct/:id">
+          <MainLayout>
+            <AdminProduct/>
           </MainLayout>
         </Route>
       </Switch>
