@@ -6,6 +6,7 @@
 // import "../styles/badge.css";
 // import Spinner from "react-bootstrap/Spinner";
 // import axios from "axios";
+// import { Link } from "react-router-dom";
 
 // const ProductsCols = (props) => {
 //   const [products, setProducts] = useState([]);
@@ -43,31 +44,6 @@
 //     fetchMoreData();
 //   }, []); // Empty dependency array ensures this runs only once on component mount
 
-//   const handleScroll = () => {
-//     // Check if user has scrolled to the bottom
-//     // Check if there is more data to fetch
-//     if (
-//       hasMoreData &&
-//       window.innerHeight + document.documentElement.scrollTop ===
-//         document.documentElement.offsetHeight
-//     ) {
-//       console.log("Reached the bottom of the page. Fetching more data...");
-//       setLoading(true);
-//       fetchMoreData();
-//     }
-//   };
-
-//   useEffect(() => {
-//     // Attach scroll event listener
-//     window.addEventListener("scroll", handleScroll);
-
-//     // Cleanup: Remove scroll event listener when component unmounts
-//     return () => {
-//       console.log("Cleanup: Removing scroll event listener");
-//       window.removeEventListener("scroll", handleScroll);
-//     };
-//   }, [products, hasMoreData]); // Reattach event listener when products state changes
-
 //   return (
 //     <>
 //       <Container className="text-center">
@@ -76,7 +52,13 @@
 //       <Container>
 //         <div className="row">
 //           {products.map((product) => (
-//             <div key={product.id} className="col-6 col-md-4 mb-5 mt-5">
+//             <Link
+//               as="div"
+//               to={`/product/${product.id}`}
+//               key={product.id}
+//               className="col-6 col-md-4 mb-5 mt-5"
+//               style={{ textDecoration: "none", color: "#000" }}
+//             >
 //               <Card
 //                 style={{
 //                   backgroundColor: "#D9D9D9",
@@ -112,7 +94,7 @@
 //               ) : (
 //                 ""
 //               )}
-//             </div>
+//             </Link>
 //           ))}
 //         </div>
 //         {loading && (
@@ -127,12 +109,6 @@
 // };
 
 // export default ProductsCols;
-
-//  - The products then should be links that go to the related product's page.
-//    /products/:id
-
-// fetching is happening but you'll need to make the styles right
-// the number of machines should be at least
 
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -175,9 +151,38 @@ const ProductsCols = (props) => {
       });
   };
 
+  const fetchAllProducts = async () => {
+    const apiUrl = `http://127.0.0.1:8000/machine/`;
+    const allProducts = [];
+
+    console.log("Fetching all products...");
+
+    const fetchData = async (url) => {
+      try {
+        const response = await axios.get(url);
+        allProducts.push(...response.data.results);
+
+        if (response.data.next) {
+          // If there is a next page, recursively fetch the next page
+          await fetchData(response.data.next);
+        } else {
+          // All pages fetched, update the state
+          setProducts(allProducts);
+          setLoading(false);
+          setHasMoreData(false);
+        }
+      } catch (error) {
+        console.error("Error fetching all products:", error);
+        setLoading(false);
+      }
+    };
+
+    await fetchData(apiUrl);
+  };
+
   useEffect(() => {
     console.log("Fetching initial set of products...");
-    fetchMoreData();
+    fetchAllProducts();
   }, []); // Empty dependency array ensures this runs only once on component mount
 
   return (

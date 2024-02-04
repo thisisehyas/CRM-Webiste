@@ -103,33 +103,6 @@ const ProductsCols = (props) => {
       });
   };
 
-  // const fetchAllProducts = () => {
-  //   const apiUrl = `http://127.0.0.1:8000/machine/`;
-
-  //   console.log("Fetching all products...");
-
-  //   axios
-  //     .get(apiUrl)
-  //     .then((response) => {
-  //       console.log("Response from the API:", response);
-
-  //       // Filter products based on the category ID
-  //       const filteredProducts = response.data.results.filter(
-  //         (product) => product.category === props.categoryId
-  //       );
-
-  //       setProducts(filteredProducts);
-  //       setLoading(false);
-
-  //       // Since we fetched all products, there's no need to check for next
-  //       setHasMoreData(false);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching all products:", error);
-  //       setLoading(false);
-  //     });
-  // };
-
   const fetchAllProducts = async () => {
     const apiUrl = `http://127.0.0.1:8000/machine/`;
     const allProducts = [];
