@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import "../../styles/badge.css";
 import "../../styles/fadeButton.css";
+import "../../styles/fontSize.css";
 import { getAccessToken } from "../authUtils";
 import { Link, useHistory } from "react-router-dom";
 import {
@@ -238,68 +239,77 @@ const ProductsCols = (props) => {
 
       {/* Add Product Button */}
       <Container className="text-center mt-3">
-        <Button variant="success" onClick={handleShowModal}>
-          Add Product
+        <Button
+          className="change-font"
+          variant="success"
+          onClick={handleShowModal}
+        >
+          اضافه کردن محصول به این دسته‌بندی
         </Button>
       </Container>
 
       <Container>
         <div className="row">
           {products.map((product) => (
-            <Link
-              as="div"
-              to={`/AdminProduct/${product.id}`}
-              key={product.id}
-              className="col-6 col-md-4 mb-5 mt-5"
-              style={{ textDecoration: "none", color: "#000" }}
-            >
-              <Card
-                style={{
-                  backgroundColor: "#D9D9D9",
-                  border: "none",
-                  width: "60%",
-                  height: "140%",
-                  margin: "auto",
-                }}
-                onClick={() => handleProductClick(product.id)}
+            <div className="col-6 col-md-4 mb-5 mt-5">
+              <Link
+                as="div"
+                to={`/AdminProduct/${product.id}`}
+                key={product.id}
+                className="col-6 col-md-4 mb-5 mt-5"
+                style={{ textDecoration: "none", color: "#000" }}
               >
-                <div
-                  className="d-flex flex-column align-items-center justify-content-center"
-                  style={{ height: "100%" }}
-                >
-                  <Card.Img
-                    className="cardImage"
-                    variant="top"
-                    src={product.picture}
-                    alt={product.title}
-                  />
-                </div>
-              </Card>
-
-              {props.containName ? (
-                <span
+                <Card
                   style={{
-                    display: "block",
-                    textAlign: "center",
+                    backgroundColor: "#D9D9D9",
+                    border: "none",
+                    width: "60%",
+                    height: "140%",
                     margin: "auto",
                   }}
+                  onClick={() => handleProductClick(product.id)}
                 >
-                  {product.title}
-                </span>
-              ) : (
-                ""
-              )}
-              <Button
-                variant="danger"
-                className="mt-2"
-                onClick={(e) => {
-                  e.preventDefault(); // Prevent the link from navigating
-                  handleDeleteProduct(product.id);
-                }}
-              >
-                Delete
-              </Button>
-            </Link>
+                  <div
+                    className="d-flex flex-column align-items-center justify-content-center"
+                    style={{ height: "100%" }}
+                  >
+                    <Card.Img
+                      className="cardImage"
+                      variant="top"
+                      src={product.picture}
+                      alt={product.title}
+                    />
+                  </div>
+
+                  {props.containName ? (
+                    <span
+                      className="mb-2"
+                      style={{
+                        display: "block",
+                        textAlign: "center",
+                        margin: "auto",
+                      }}
+                    >
+                      {product.title}
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                  <Card.Footer className="text-center ">
+                    <Button
+                      variant="danger"
+                      className="change-font"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleDeleteProduct(product.id);
+                      }}
+                    >
+                      حذف محصول
+                    </Button>
+                  </Card.Footer>
+                </Card>
+              </Link>
+            </div>
           ))}
         </div>
 
