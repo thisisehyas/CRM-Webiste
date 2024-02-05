@@ -17,7 +17,7 @@ const OrderSubmitBox = () => {
         className="p-4 mt-3 mb-3 change-font"
       >
         <Form style={{ textAlign: "right", direction: "rtl" }}>
-          <h5 className="text-center mb-5">ثبت سفارش</h5>
+          <h5 className="text-center mb-5"> ثبت سفارش جدید</h5>
           <Row>
             <Form.Group as={Col} md="6">
               <Form.Label className="mt-2">آیدی خریدار</Form.Label>
@@ -57,7 +57,6 @@ const OrderSubmitBox = () => {
 };
 
 export default OrderSubmitBox;
-
 
 // put a format for the data input field.
 // see if you are getting all the info needed to submit an order.

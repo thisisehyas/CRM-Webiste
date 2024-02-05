@@ -5,6 +5,7 @@ import CostumerMessage from "../components/CostumerMessage";
 import UsersList from "../components/UsersList";
 import { Navbar, Container } from "react-bootstrap";
 import OrderSubmitBox from "../components/Admin/OrderSubmitBox";
+import OrderList from "../components/Admin/OrderList";
 
 const AdminPanel = () => {
   return (
@@ -38,6 +39,7 @@ const AdminPanel = () => {
           <AdminInfoBox />
           <CostumerMessage />
           <UsersList />
+          <OrderList />
         </Col>
 
         <Col md={6} xs={12}>
