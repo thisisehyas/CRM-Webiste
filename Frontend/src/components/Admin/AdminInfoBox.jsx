@@ -6,6 +6,7 @@ import "../../styles/fontSize.css";
 import { getAccessToken } from "../../components/authUtils";
 import { useState } from "react";
 import { useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const AdminInfoBox = () => {
   const [adminInfo, setAdminInfo] = useState({

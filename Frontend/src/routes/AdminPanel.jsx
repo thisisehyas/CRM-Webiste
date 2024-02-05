@@ -4,6 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import CostumerMessage from "../components/CostumerMessage";
 import UsersList from "../components/UsersList";
 import { Navbar, Container } from "react-bootstrap";
+import OrderSubmitBox from "../components/Admin/OrderSubmitBox";
 
 const AdminPanel = () => {
   return (
@@ -41,6 +42,7 @@ const AdminPanel = () => {
 
         <Col md={6} xs={12}>
           <RoutesList />
+          <OrderSubmitBox />
         </Col>
       </Row>
     </div>

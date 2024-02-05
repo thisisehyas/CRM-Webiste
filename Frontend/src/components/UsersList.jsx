@@ -36,7 +36,10 @@ const UsersList = () => {
       const userList = await response.json();
       console.log("Fetched users successfully:", userList);
       const filteredUsers = userList.filter(
-        (user) => user.username !== "admin1" && user.username !== "admin" && user.username !== "me"
+        (user) =>
+          user.username !== "admin1" &&
+          user.username !== "admin" &&
+          user.username !== "me"
       );
       setUsers(filteredUsers);
     } catch (error) {
@@ -108,7 +111,7 @@ const UsersList = () => {
 
       <ListGroup
         className="p-3"
-        style={{ overflowY: "auto", maxHeight: "210px" }}
+        style={{ overflowY: "auto", maxHeight: "224px" }}
       >
         {users.map((user) => (
           <ListGroup.Item
