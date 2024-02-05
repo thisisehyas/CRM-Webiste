@@ -52,3 +52,5 @@ export default AdminPanel;
 // i want the length to stretch and be the same size
 
 // if you add the online QA part you can put it under the routeslist
+
+// need a part for the admin to be able to log out

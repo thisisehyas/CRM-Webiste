@@ -20,7 +20,7 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [redirectToHome, setRedirectToHome] = useState(false);
-  const [redirectToUserPanel, setRedirectToUserPanel] = useState(false);
+  const [redirectToUserPanel, setRedirectToAdminPanel] = useState(false);
 
   const fetchUserInfo = async (accessToken) => {
     try {
@@ -48,7 +48,7 @@ const Login = (props) => {
 
           if (user.is_staff) {
             // Admin user, redirect to user panel
-            setRedirectToUserPanel(true);
+            setRedirectToAdminPanel(true);
           } else {
             // Normal user, redirect to home
             setRedirectToHome(true);
@@ -83,7 +83,7 @@ const Login = (props) => {
       const user = await fetchUserInfo(accessToken);
 
       if (user.is_staff) {
-        setRedirectToUserPanel(true);
+        setRedirectToAdminPanel(true);
       } else {
         setRedirectToHome(true);
       }

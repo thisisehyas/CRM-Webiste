@@ -20,6 +20,7 @@ import AdminHome from "./components/Admin/RoutesAdmin/AdminHome.jsx";
 import AdminProducts from "./components/Admin/RoutesAdmin/AdminProducts.jsx";
 import AdminCategory from "./components/Admin/RoutesAdmin/AdminCategory.jsx";
 import AdminProduct from "./components/Admin/RoutesAdmin/AdminProduct.jsx";
+import CostumerPanel from "./routes/CostumerPanel.jsx";
 
 const MainLayout = ({ children }) => (
   <div className="App">
@@ -110,6 +111,9 @@ function App() {
           <MainLayout>
             <AdminProduct/>
           </MainLayout>
+        </Route>
+        <Route path="/CostumerPanel">
+          <CostumerPanel/>
         </Route>
       </Switch>
     </Router>
