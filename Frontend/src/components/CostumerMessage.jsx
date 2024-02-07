@@ -102,7 +102,7 @@ const CostumerMessage = () => {
       style={{
         direction: "rtl",
         textAlign: "right",
-        backgroundColor: " #D9D9D9",
+        backgroundColor: "#92C7CF",
         borderRadius: "10px",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
       }}
