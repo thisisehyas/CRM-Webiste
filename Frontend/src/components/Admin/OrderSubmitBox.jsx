@@ -185,18 +185,35 @@ const OrderSubmitBox = () => {
               </Form.Text>
             </Form.Group>
           </Row>
-
           <Row>
             <Form.Group as={Col} md="6">
-              <Form.Label className="mt-2">توضیحات</Form.Label>
-              <Form.Control as="textarea" required rows={1}/>
+              <Form.Label className="mt-2">شماره تماس خریدار</Form.Label>
+              <InputGroup hasValidation>
+                <Form.Control
+                  style={{ direction: "rtl", textAlign: "right" }}
+                  type="tel"
+                  pattern="^(\+98|0)?9\d{9}$"
+                  required
+                  placeholder="مثال: 09123456789"
+                />
+                <Form.Control.Feedback type="invalid">
+                  لطفاً یک شماره تماس معتبر وارد کنید. (به عنوان مثال:
+                  09123456789)
+                </Form.Control.Feedback>
+              </InputGroup>
             </Form.Group>
-
             <Form.Group as={Col} md="6">
               <Form.Label className="mt-2">تعداد ماشین</Form.Label>
               <InputGroup hasValidation>
                 <Form.Control type="number" required />
               </InputGroup>
+            </Form.Group>
+          </Row>
+
+          <Row>
+            <Form.Group as={Col} md="12">
+              <Form.Label className="mt-2">توضیحات</Form.Label>
+              <Form.Control as="textarea" required rows={3} />
             </Form.Group>
           </Row>
           <div className="d-flex justify-content-center mt-4">
