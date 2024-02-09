@@ -5,6 +5,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const EachProduct = (props) => {
+
   const [productData, setProductData] = useState(null);
   const { id } = useParams(); // Getting the category ID from URL params
 
@@ -30,6 +31,10 @@ const EachProduct = (props) => {
   useEffect(() => {
     console.log("Product data:", productData);
   }, [productData]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>

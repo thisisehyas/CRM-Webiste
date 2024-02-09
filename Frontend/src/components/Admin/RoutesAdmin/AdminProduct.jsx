@@ -31,6 +31,10 @@ const AdminProduct = (props) => {
     console.log("Product data:", productData);
   }, [productData]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       {productData ? (
