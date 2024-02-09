@@ -21,6 +21,9 @@ const OrderSubmitBox = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [customerId, setCustomerId] = useState(null);
 
+  //states needed for creating an order when the form is submitted
+  const [description, setDescription] = useState("");
+
   useEffect(() => {
     const fetchMachines = async () => {
       try {
@@ -122,10 +125,12 @@ const OrderSubmitBox = () => {
     e.preventDefault();
     if (!selectedUser || isNaN(parseInt(selectedUser))) {
       console.error("Invalid user ID");
-      return; // Don't proceed with the request if user ID is invalid
+      return; // Won't proceed with the request if user ID is invalid
     }
 
     try {
+      //creating the costumer out of the user when the form is submitted.
+
       const requestBody = JSON.stringify({
         user_id: parseInt(selectedUser),
         phone_number: phoneNumber,
@@ -140,18 +145,55 @@ const OrderSubmitBox = () => {
         },
         body: requestBody,
       });
-      const responseData = await response.json();
-      console.log("Response Status:", response.status);
-      console.log("Response Body:", responseData);
+
       if (!response.ok) {
         throw new Error("Failed to create customer");
       }
+
       const data = await response.json();
       setCustomerId(data.id); // Storing the created customer ID
+
+      // for debugging (related to creating a costumer)
+
+      // const responseData = await response.json();
+      // console.log("Response Status:", response.status);
+      // console.log("Response Body:", responseData);
+
+      // Submitting the order
+
+      const selectedMachineData = machines.find(
+        (machine) => machine.id === parseInt(selectedMachine)
+      );
+
+      const requestBodyOrder = JSON.stringify({
+        customer: parseInt(selectedUser),
+        machine: parseInt(selectedMachine),
+        unit_price: selectedMachineData.unit_price,
+        description: description,
+      });
+
+      const responseOrder = await fetch("http://127.0.0.1:8000/order/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `JWT ${getAccessToken()}`,
+        },
+        body: requestBodyOrder,
+      });
+
+      if (!responseOrder.ok) {
+        throw new Error("Failed to submit the order");
+      }
+
+      // success in creating the Order
+      console.log("Order was submitted successfully!");
+      const orderData = responseOrder.json();
+      console.log("Order data: " + orderData);
     } catch (error) {
-      console.error("Error creating customer:", error);
+      console.error("Error creating customer/order:", error);
     }
   };
+
 
   return (
     <>
@@ -254,7 +296,13 @@ const OrderSubmitBox = () => {
           <Row>
             <Form.Group as={Col} md="12">
               <Form.Label className="mt-2">توضیحات</Form.Label>
-              <Form.Control as="textarea" required rows={3} />
+              <Form.Control
+                as="textarea"
+                required
+                rows={3}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
             </Form.Group>
           </Row>
           <div className="d-flex justify-content-center mt-4">
@@ -273,6 +321,3 @@ const OrderSubmitBox = () => {
 };
 
 export default OrderSubmitBox;
-
-// put a format for the data input field.
-// see if you are getting all the info needed to submit an order.
