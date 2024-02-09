@@ -12,10 +12,14 @@ const OrderSubmitBox = () => {
   const [filteredMachines, setFilteredMachines] = useState([]);
   const [searchTextMachine, setSearchTextMachine] = useState("");
 
-  const [costumer, setCostumers] = useState([]);
-  const [selectedCostumer, setSelectedCostumer] = useState("");
-  const [filteredCostumers, setFilteredCostumers] = useState([]);
-  const [searchTextCostumer, setSearchTextCostumer] = useState("");
+  const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [searchTextUser, setSearchTextUser] = useState("");
+
+  //states needed for creating a costumer when the form is submitted
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [customerId, setCustomerId] = useState(null);
 
   useEffect(() => {
     const fetchMachines = async () => {
@@ -32,7 +36,7 @@ const OrderSubmitBox = () => {
       }
     };
 
-    const fetchCustomers = async () => {
+    const fetchUsers = async () => {
       try {
         const response = await fetch("http://127.0.0.1:8000/auth/users/", {
           headers: { Authorization: `JWT ${getAccessToken()}` },
@@ -42,8 +46,8 @@ const OrderSubmitBox = () => {
         }
         const data = await response.json();
 
-        setCostumers(data);
-        setFilteredCostumers(data);
+        setUsers(data);
+        setFilteredUsers(data);
       } catch (error) {
         console.error("Error fetching customers:", error);
       }
@@ -64,7 +68,7 @@ const OrderSubmitBox = () => {
     };
 
     fetchMachines();
-    fetchCustomers();
+    fetchUsers();
     fetchAdminInfo();
   }, []);
 
@@ -76,10 +80,10 @@ const OrderSubmitBox = () => {
     );
   };
 
-  const handleCustomerChange = (e) => {
-    setSelectedCostumer(e.target.value);
-    setSearchTextCostumer(
-      costumer.find((customer) => customer.id === parseInt(e.target.value))
+  const handleUserChange = (e) => {
+    setSelectedUser(e.target.value);
+    setSearchTextUser(
+      users.find((customer) => customer.id === parseInt(e.target.value))
         .username
     );
   };
@@ -99,18 +103,53 @@ const OrderSubmitBox = () => {
     }
   };
 
-  const handleFilterChangeCustomer = (e) => {
+  const handleFilterChangeUser = (e) => {
     const keyword = e.target.value;
-    setSearchTextCostumer(keyword);
-    const filtered = costumer.filter((customer) =>
+    setSearchTextUser(keyword);
+    const filtered = users.filter((customer) =>
       customer.username.toLowerCase().includes(keyword.toLowerCase())
     );
-    setFilteredCostumers(filtered);
+    setFilteredUsers(filtered);
 
     if (filtered.length === 1) {
-      setSelectedCostumer(filtered[0].id.toString());
+      setSelectedUser(filtered[0].id.toString());
     } else {
-      setSelectedCostumer("");
+      setSelectedUser("");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!selectedUser || isNaN(parseInt(selectedUser))) {
+      console.error("Invalid user ID");
+      return; // Don't proceed with the request if user ID is invalid
+    }
+
+    try {
+      const requestBody = JSON.stringify({
+        user_id: parseInt(selectedUser),
+        phone_number: phoneNumber,
+      });
+      console.log("Request Payload:", requestBody);
+
+      const response = await fetch("http://127.0.0.1:8000/customer/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `JWT ${getAccessToken()}`,
+        },
+        body: requestBody,
+      });
+      const responseData = await response.json();
+      console.log("Response Status:", response.status);
+      console.log("Response Body:", responseData);
+      if (!response.ok) {
+        throw new Error("Failed to create customer");
+      }
+      const data = await response.json();
+      setCustomerId(data.id); // Storing the created customer ID
+    } catch (error) {
+      console.error("Error creating customer:", error);
     }
   };
 
@@ -131,13 +170,13 @@ const OrderSubmitBox = () => {
               <Form.Label className="mt-2">انتخاب خریدار</Form.Label>
               <Form.Control
                 as="select"
-                value={selectedCostumer}
-                onChange={handleCustomerChange}
+                value={selectedUser}
+                onChange={handleUserChange}
                 required
                 style={{ marginTop: "5px" }}
               >
                 <option value="">انتخاب کنید...</option>
-                {filteredCostumers.map((customer) => (
+                {filteredUsers.map((customer) => (
                   <option key={customer.id} value={customer.id}>
                     {customer.username}
                   </option>
@@ -146,8 +185,8 @@ const OrderSubmitBox = () => {
               <Form.Control
                 className="mt-2"
                 type="text"
-                value={searchTextCostumer}
-                onChange={handleFilterChangeCustomer}
+                value={searchTextUser}
+                onChange={handleFilterChangeUser}
                 placeholder="جستجو..."
               />
               <Form.Text className="text-muted">
@@ -195,6 +234,8 @@ const OrderSubmitBox = () => {
                   pattern="^(\+98|0)?9\d{9}$"
                   required
                   placeholder="مثال: 09123456789"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
                 />
                 <Form.Control.Feedback type="invalid">
                   لطفاً یک شماره تماس معتبر وارد کنید. (به عنوان مثال:
@@ -217,7 +258,11 @@ const OrderSubmitBox = () => {
             </Form.Group>
           </Row>
           <div className="d-flex justify-content-center mt-4">
-            <Button type="submit" style={{ width: "15%", fontSize: "115%" }}>
+            <Button
+              onClick={handleSubmit}
+              type="submit"
+              style={{ width: "15%", fontSize: "115%" }}
+            >
               ثبت
             </Button>
           </div>
