@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header.jsx";
 import CategoryCards from "../components/CategoryCards.jsx";
 import Badge from "react-bootstrap/esm/Badge";
@@ -8,6 +8,9 @@ import Container from "react-bootstrap/esm/Container";
 import ProductsCols from "../components/ProductsCols";
 
 const Products = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <Header title="محصولات" />

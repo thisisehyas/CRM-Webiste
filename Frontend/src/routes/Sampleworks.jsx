@@ -3,10 +3,13 @@ import Header from "../components/Header.jsx";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Card from "react-bootstrap/Card";
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/fontSize.css";
 
 const SampleWorks = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <Header title="نمونه‌کارها" />
