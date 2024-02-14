@@ -13,8 +13,8 @@ const AdminInfoBox = () => {
     id: 0,
     username: "",
     email: "",
-    first_name: "ادمین",
-    last_name: "ادمین",
+    // first_name: "ادمین",
+    // last_name: "ادمین",
   });
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const AdminInfoBox = () => {
     >
       <Form style={{ textAlign: "right", direction: "rtl" }}>
         <h6 className="text-center mb-5"> اطلاعات ادمین</h6>
-        <Row>
+        {/* <Row>
           <Form.Group as={Col} md="6">
             <Form.Label className="mt-2">نام</Form.Label>
             <Form.Control
@@ -79,7 +79,7 @@ const AdminInfoBox = () => {
               value={"ادمین"}
             />
           </Form.Group>
-        </Row>
+        </Row> */}
 
         <Row>
           <Form.Group as={Col} md="6">
