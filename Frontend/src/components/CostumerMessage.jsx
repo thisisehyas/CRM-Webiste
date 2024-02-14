@@ -118,6 +118,35 @@ const CostumerMessage = () => {
     return new Date(dateTimeString).toLocaleString("en-US", options);
   };
 
+  const handleDeleteMessage = async (id) => {
+    try {
+      const token = getAccessToken();
+      const response = await fetch(`http://127.0.0.1:8000/message/${id}/`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `JWT ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        console.log(response.status);
+        throw new Error(
+          `Failed to delete message (Status: ${response.status})`
+        );
+      }
+
+      // Remove the deleted message from the state
+      setUnreadMessages((prevMessages) =>
+        prevMessages.filter((msg) => msg.id !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting message:", error);
+    }
+
+    // Refresh the page
+    window.location.reload();
+  };
+
   return (
     <Container
       className="mt-4 pb-3 change-font"
@@ -129,7 +158,7 @@ const CostumerMessage = () => {
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <h6 className="text-center pt-5">پیام‌ها</h6>
+      <h5 className="text-center p-4">پیام‌ها</h5>
       <ListGroup
         className="p-2"
         style={{ overflowY: "auto", maxHeight: "200px" }}
