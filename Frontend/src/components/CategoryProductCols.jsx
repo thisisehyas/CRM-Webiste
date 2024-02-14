@@ -64,6 +64,7 @@ const ProductsCols = (props) => {
     setProducts([]);
     setLoading(true);
     setHasMoreData(true);
+    setInitialFetch(true);
 
     fetchMoreProducts();
 
@@ -76,8 +77,15 @@ const ProductsCols = (props) => {
         `Fetching initial set of products for category ${props.categoryId}...`
       );
 
+      let apiUrl = `http://127.0.0.1:8000/machine/?page=${page}`;
+
+      // Modify apiUrl if search term exists
+      if (searchTerm.trim() !== "") {
+        apiUrl = `http://127.0.0.1:8000/machine/?search=${searchTerm}&page=${page}`;
+      }
+
       axios
-        .get(`http://127.0.0.1:8000/machine/?page=${page}`)
+        .get(apiUrl)
         .then((response) => {
           console.log("Response from the API:", response);
 
