@@ -1,3 +1,38 @@
 .item {
   margin-top: 10px;
 }
+
+/* for the search bar */
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  padding: 5px;
+  position: relative;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 40px 8px 8px;
+  font-size: 85%;
+  padding-right: 30%;
+}
+
+.search-button {
+  margin-left: 5px;
+  background-color: rgb(93, 95, 94);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 12px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -1.5%;
+  z-index: 1;
+}

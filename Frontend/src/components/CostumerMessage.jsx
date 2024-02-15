@@ -1,15 +1,23 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import "../styles/costumerMessage.css";
 import React, { useState, useEffect } from "react";
 import { getAccessToken } from "./authUtils";
 import { Modal } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const CostumerMessage = () => {
   const [messages, setMessages] = useState([]);
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
+  //for search bar
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // state to hold the text in the filter by status button
+  const [filterStatus, setFilterStatus] = useState("فیلتر براساس وضعیت");
 
   useEffect(() => {
     // Fetch messages when the component mounts
@@ -147,6 +155,29 @@ const CostumerMessage = () => {
     window.location.reload();
   };
 
+  // filter functions
+
+  const handleInputChange = (event) => {
+    const searchTerm = event.target.value;
+    // Implement search logic here
+  };
+
+  const handleFilterStatus = (status) => {
+    const persionStatus = getMessageStatusTranslation(status);
+    setFilterStatus(persionStatus);
+    // Implement filter logic here based on the selected status
+  };
+
+  const handleClearFilters = () => {
+    setFilterStatus("فیلتر براساس وضعیت");
+    // Implement logic to clear applied filters and reset the messages list
+  };
+
+  const handleSearch = () => {
+    // Perform search action here, e.g., call a function passed as props
+    onSearch(searchTerm);
+  };
+
   return (
     <Container
       className="mt-4 pb-3 change-font"
@@ -159,6 +190,57 @@ const CostumerMessage = () => {
       }}
     >
       <h5 className="text-center p-4">پیام‌ها</h5>
+
+      <Container
+        className="mb-3 filter-container"
+        style={{
+          background: "#228896",
+          borderRadius: "8px",
+          width:'97%'
+        }}
+      >
+        <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex align-items-center">
+            <div className="search-bar-container">
+              <Form.Control
+                type="text"
+                className="search-input"
+                placeholder="جست‌وجو..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button className="search-button" onClick={handleSearch}>
+                <FontAwesomeIcon icon={faSearch} />
+              </button>
+            </div>
+
+            {/* Filter dropdown */}
+            <Dropdown className="m-1">
+              <Dropdown.Toggle className="change-font-btn" variant="dark">
+                {filterStatus}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => handleFilterStatus("U")}>
+                  خوانده نشده
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFilterStatus("N")}>
+                  نیازمند اقدام
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFilterStatus("A")}>
+                  پاسخ داده شده
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+          <Button
+            className="change-font-btn clear-filters-btn btn btn-danger m-3"
+            onClick={handleClearFilters}
+          >
+            پاک کردن فیلترها
+          </Button>
+        </div>
+      </Container>
+
       <ListGroup
         className="p-2"
         style={{ overflowY: "auto", maxHeight: "200px" }}
@@ -242,3 +324,5 @@ const CostumerMessage = () => {
 };
 
 export default CostumerMessage;
+
+// the search bar can be wider
