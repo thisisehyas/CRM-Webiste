@@ -195,8 +195,9 @@ const CostumerMessage = () => {
   };
 
   const handleClearFilters = () => {
+    setSearchTerm(""); // Reset the search term to an empty string
     setFilterStatus("فیلتر براساس وضعیت");
-    // Implement logic to clear applied filters and reset the messages list
+    fetchMessages("", ""); // Fetch all messages again without any search term or filter status
   };
 
   // const handleSearch = async () => {
