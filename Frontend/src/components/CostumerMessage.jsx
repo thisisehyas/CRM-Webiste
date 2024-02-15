@@ -21,16 +21,22 @@ const CostumerMessage = () => {
 
   useEffect(() => {
     // Fetch messages when the component mounts
-    fetchMessages();
+    fetchMessages("", "");
   }, []);
 
-  const fetchMessages = async () => {
+  const fetchMessages = async (searchTerm, filterStatus) => {
     try {
       const token = getAccessToken();
       let allMessages = [];
 
       // Fetch messages from the first page
       let nextUrl = "http://127.0.0.1:8000/message/";
+      if (filterStatus !== "فیلتر براساس وضعیت") {
+        nextUrl += `?status=${getStatusAbbreviation(filterStatus)}`;
+      }
+      if (searchTerm.trim() !== "") {
+        nextUrl += `?search=${searchTerm}`;
+      }
       while (nextUrl) {
         const response = await fetch(nextUrl, {
           headers: {
@@ -113,6 +119,19 @@ const CostumerMessage = () => {
     }
   };
 
+  const getStatusAbbreviation = (status) => {
+    switch (status) {
+      case "خوانده نشده":
+        return "U";
+      case "نیازمند اقدام":
+        return "N";
+      case "پاسخ داده شده":
+        return "A";
+      default:
+        return "";
+    }
+  };
+
   const formatDateTime = (dateTimeString) => {
     const options = {
       year: "numeric",
@@ -159,13 +178,14 @@ const CostumerMessage = () => {
 
   const handleInputChange = (event) => {
     const searchTerm = event.target.value;
-    // Implement search logic here
+    setSearchTerm(searchTerm); // Update the search term state immediately
+    fetchMessages(searchTerm, filterStatus); // Call fetchMessages with the updated search term
   };
 
   const handleFilterStatus = (status) => {
-    const persionStatus = getMessageStatusTranslation(status);
-    setFilterStatus(persionStatus);
-    // Implement filter logic here based on the selected status
+    const persianStatus = getMessageStatusTranslation(status);
+    setFilterStatus(persianStatus);
+    fetchMessages(searchTerm, persianStatus); // Call fetchMessages with the current search term
   };
 
   const handleClearFilters = () => {
@@ -196,7 +216,7 @@ const CostumerMessage = () => {
         style={{
           background: "#228896",
           borderRadius: "8px",
-          width:'97%'
+          width: "97%",
         }}
       >
         <div className="d-flex justify-content-between align-items-center">
@@ -207,7 +227,7 @@ const CostumerMessage = () => {
                 className="search-input"
                 placeholder="جست‌وجو..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleInputChange}
               />
               <button className="search-button" onClick={handleSearch}>
                 <FontAwesomeIcon icon={faSearch} />
