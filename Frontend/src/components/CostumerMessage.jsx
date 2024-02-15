@@ -31,11 +31,17 @@ const CostumerMessage = () => {
 
       // Fetch messages from the first page
       let nextUrl = "http://127.0.0.1:8000/message/";
-      if (filterStatus !== "فیلتر براساس وضعیت") {
-        nextUrl += `?status=${getStatusAbbreviation(filterStatus)}`;
+      const queryParams = [];
+
+      if (filterStatus && filterStatus !== "فیلتر براساس وضعیت") {
+        queryParams.push(`status=${getStatusAbbreviation(filterStatus)}`);
       }
       if (searchTerm.trim() !== "") {
-        nextUrl += `?search=${searchTerm}`;
+        queryParams.push(`search=${searchTerm}`);
+      }
+
+      if (queryParams.length > 0) {
+        nextUrl += `?${queryParams.join("&")}`;
       }
       while (nextUrl) {
         const response = await fetch(nextUrl, {
@@ -193,10 +199,14 @@ const CostumerMessage = () => {
     // Implement logic to clear applied filters and reset the messages list
   };
 
-  const handleSearch = () => {
-    // Perform search action here, e.g., call a function passed as props
-    onSearch(searchTerm);
-  };
+  // const handleSearch = async () => {
+  //   try {
+  //     // Fetch messages from the backend using the search term
+  //     await fetchMessages(searchTerm, "");
+  //   } catch (error) {
+  //     console.error("Error searching messages:", error);
+  //   }
+  // };
 
   return (
     <Container
@@ -229,7 +239,11 @@ const CostumerMessage = () => {
                 value={searchTerm}
                 onChange={handleInputChange}
               />
-              <button className="search-button" onClick={handleSearch}>
+              <button
+                className="search-button"
+                // onClick={handleSearch}
+                style={{ cursor: "default" }}
+              >
                 <FontAwesomeIcon icon={faSearch} />
               </button>
             </div>

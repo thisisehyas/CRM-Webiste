@@ -29,7 +29,7 @@
   border: none;
   border-radius: 20px;
   padding: 8px 12px;
-  cursor: pointer;
+  
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
