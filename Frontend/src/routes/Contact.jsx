@@ -210,7 +210,9 @@ const Contact = () => {
               </Form.Group>
 
               <Button
-               disabled={isButtonDisabled || (isFormSubmitted && !isButtonDisabled)}
+                disabled={
+                  isButtonDisabled || (isFormSubmitted && !isButtonDisabled)
+                }
                 variant="success"
                 type="submit"
                 className="change-font"
@@ -244,16 +246,16 @@ const Contact = () => {
               بگیرید.
               <br />
               <br />
-              شماره تلفن : 01132323232
+              شماره تلفن : 09112113045
               <br />
               <br />
-              پست الکترونیک : sherkat@gmail.com
+              پست الکترونیک : khoshesanat@gmail.com
               <br />
               <br />
-              آدرس : خیابان 1، کوچه‌ی اول، سمت راست، شرکت خوشه صنعت
+              آدرس :بابلسر - میدان امام حسین - شهرک صنعتی بابلسر - واحدG8 و G8-1
               <br />
               <br />
-              ساعت کاری : از ساعت 7:30 تا 19
+              ساعت کاری : از ساعت 07:30 تا 17:00
             </p>
           </Col>
         </Row>

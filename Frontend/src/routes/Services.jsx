@@ -33,7 +33,7 @@ const Services = () => {
       </div>
       <Container fluid>
         <Row className="mx-auto">
-          {[1, 2, 3, 4].map((index) => (
+          {/* {[1, 2, 3, 4].map((index) => (
             <Col key={index}>
               <Card
                 className="m-2 mx-auto"
@@ -63,7 +63,88 @@ const Services = () => {
                 </Card.Body>
               </Card>
             </Col>
-          ))}
+          ))} */}
+          <Col>
+            <Card
+              className="m-2 mx-auto"
+              style={{ width: "19rem", borderRadius: "20px", margin: "auto" }}
+            >
+              <Card.Img
+                variant="top"
+                src="http://127.0.0.1:8000/machine_pics/services.png"
+              />
+              <Card.Body>
+                <Card.Title
+                  // data-testid={`default-title-${index}`}
+                  className="text-center change-font-title"
+                >
+                  مشاوره های رایگان
+                </Card.Title>
+                <Card.Text
+                  className="change-font"
+                  style={{ textAlign: "right", direction: "rtl" }}
+                >
+                  کارشناسان شرکت با سال‌ها تجربه و دانش، آماده پاسخگویی به
+                  سوالات و ابهام‌های شما در زمینه خرید، ارتقا و یا تعمیرات
+                  می‌باشند. این مشاوره‌ها هم به صورت حضوری و هم به صورت تلفنی
+                  صورت می‌گیرد تا گستره‌ی هرچه وسیع‌تری از مشتریان بتوانند از
+                  آن‌ها بهره‌مند شوند.
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card
+              className="m-2 mx-auto"
+              style={{ width: "19rem", borderRadius: "20px", margin: "auto" }}
+            >
+              <Card.Img
+                variant="top"
+                src="http://127.0.0.1:8000/machine_pics/services.png"
+              />
+              <Card.Body>
+                <Card.Title
+                  // data-testid={`default-title-${index}`}
+                  className="text-center change-font-title"
+                >
+                  گارانتی و ضمانت
+                </Card.Title>
+                <Card.Text
+                  className="change-font"
+                  style={{ textAlign: "right", direction: "rtl" }}
+                >
+                  گارانتی شرکت ضمانت کیفیت محصولات فروخته شده و تعهد این شرکت می
+                  باشد.
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card
+              className="m-2 mx-auto"
+              style={{ width: "19rem", borderRadius: "20px", margin: "auto" }}
+            >
+              <Card.Img
+                variant="top"
+                src="http://127.0.0.1:8000/machine_pics/services.png"
+              />
+              <Card.Body>
+                <Card.Title
+                  // data-testid={`default-title-${index}`}
+                  className="text-center change-font-title"
+                >
+                  قرارداد های خدماتی
+                </Card.Title>
+                <Card.Text
+                  className="change-font"
+                  style={{ textAlign: "right", direction: "rtl" }}
+                >
+                  قرارداد تمدید گارانتی <br /> قرارداد بازدید دوره ای <br />
+                  قرارداد تمدید خدمات پس از فروش
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
         </Row>
       </Container>
     </div>

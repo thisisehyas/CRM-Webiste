@@ -17,10 +17,10 @@ const footer1 = () => {
             />
           </span>
           <span className="hide-on-small-screen" style={{ marginTop: "10px" }}>
-            011-12345678
+            09112113045
           </span>
           <span className="hide-on-small-screen" style={{ marginTop: "10px" }}>
-            TheCompany@gmail.com
+            khoshesanat@gmail.com
           </span>
         </div>
         <div className="col-6 col-lg-4 second">
@@ -34,7 +34,7 @@ const footer1 = () => {
         </div>
         <div className="col-6 col-lg-3 third hide-on-small-screen">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d12795.629077821872!2d52.65079384293318!3d36.70076616059693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m5!1s0x3f8f81c6f2554bfb%3A0x1d77f2bb333c2f3a!2sBabolsar!3m2!1d36.7005274!2d52.650192!4m3!3m2!1d36.700364199999996!2d52.670359499999996!5e0!3m2!1sen!2sde!4v1703683163592!5m2!1sen!2sde"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1599.8782283259504!2d52.68421339667321!3d36.68035629759859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8f8093ba6eea3f%3A0xce45a2b9384e4f71!2sKhoushe%20Sanaat%20Company!5e0!3m2!1sen!2sde!4v1708142011528!5m2!1sen!2sde"
             width="600"
             height="450"
             style={{ border: "0", width: "95%", height: "100%" }}
@@ -48,7 +48,7 @@ const footer1 = () => {
       <div className="row">
         <div className="icons col-6">
           {/* instagram icon */}
-          <a href="">
+          <a href="https://www.instagram.com/iran_color_sorter/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
