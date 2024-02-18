@@ -9,11 +9,8 @@ import "../styles/login.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import {
-  setAccessToken,
-  getAccessToken,
-  removeAccessToken,
-} from "../components/authUtils.jsx";
+import { setAccessToken, getAccessToken } from "../components/authUtils.jsx";
+import "../styles/font.css";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");

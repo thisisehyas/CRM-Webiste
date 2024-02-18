@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import CategoryProductsCols from "../components/CategoryProductCols.jsx";
+import "../styles/font.css";
 
 const Category = () => {
   const [categoryData, setCategoryData] = useState(null);

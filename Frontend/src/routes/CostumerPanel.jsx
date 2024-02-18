@@ -1,5 +1,6 @@
 import CostumerPanelHeader from "../components/Costumer/CostumerPanelHeader";
 import OrderInfoBox from "../components/Costumer/OrderInfoBox";
+import "../styles/font.css";
 
 const CostumerPanel = () => {
   return (

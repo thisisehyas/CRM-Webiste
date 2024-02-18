@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/badge.css";
 import Container from "react-bootstrap/esm/Container";
 import ProductsCols from "../components/ProductsCols";
+import "../styles/font.css";
 
 const Products = () => {
   useEffect(() => {

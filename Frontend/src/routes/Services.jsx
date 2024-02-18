@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import "../styles/fontSize.css";
 import React, { useEffect } from "react";
+import "../styles/font.css";
 
 const Services = () => {
   useEffect(() => {
@@ -32,52 +33,24 @@ const Services = () => {
         </p>
       </div>
       <Container fluid>
-        <Row className="mx-auto">
-          {/* {[1, 2, 3, 4].map((index) => (
-            <Col key={index}>
-              <Card
-                className="m-2 mx-auto"
-                style={{ width: "19rem", borderRadius: "20px", margin: "auto" }}
-              >
-                <Card.Img
-                  variant="top"
-                  src="http://127.0.0.1:8000/machine_pics/services.png"
-                />
-                <Card.Body>
-                  <Card.Title
-                    data-testid={`default-title-${index}`}
-                    className="text-center change-font-title"
-                  >
-                    مشاوره های رایگان
-                  </Card.Title>
-                  <Card.Text
-                    className="change-font"
-                    style={{ textAlign: "right", direction: "rtl" }}
-                  >
-                    کارشناسان شرکت با سال‌ها تجربه و دانش، آماده پاسخگویی به
-                    سوالات و ابهام‌های شما در زمینه خرید، ارتقا و یا تعمیرات
-                    می‌باشند. این مشاوره‌ها هم به صورت حضوری و هم به صورت تلفنی
-                    صورت می‌گیرد تا گستره‌ی هرچه وسیع‌تری از مشتریان بتوانند از
-                    آن‌ها بهره‌مند شوند.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))} */}
-          <Col>
+        <Row className="mx-auto d-flex">
+          <Col className="align-items-stretch">
             <Card
               className="m-2 mx-auto"
-              style={{ width: "19rem", borderRadius: "20px", margin: "auto" }}
+              style={{
+                width: "19rem",
+                borderRadius: "20px",
+                margin: "auto",
+                height: "400px",
+              }}
             >
               <Card.Img
+                className="w-50 mx-auto mt-3"
                 variant="top"
                 src="http://127.0.0.1:8000/machine_pics/services.png"
               />
               <Card.Body>
-                <Card.Title
-                  // data-testid={`default-title-${index}`}
-                  className="text-center change-font-title"
-                >
+                <Card.Title className="text-center change-font-title">
                   مشاوره های رایگان
                 </Card.Title>
                 <Card.Text
@@ -93,20 +66,23 @@ const Services = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col className="align-items-stretch">
             <Card
               className="m-2 mx-auto"
-              style={{ width: "19rem", borderRadius: "20px", margin: "auto" }}
+              style={{
+                width: "19rem",
+                borderRadius: "20px",
+                margin: "auto",
+                height: "400px",
+              }}
             >
               <Card.Img
+                className="w-50 mx-auto mt-3"
                 variant="top"
-                src="http://127.0.0.1:8000/machine_pics/services.png"
+                src="http://127.0.0.1:8000/machine_pics/shield.jpeg"
               />
               <Card.Body>
-                <Card.Title
-                  // data-testid={`default-title-${index}`}
-                  className="text-center change-font-title"
-                >
+                <Card.Title className="text-center change-font-title mt-5">
                   گارانتی و ضمانت
                 </Card.Title>
                 <Card.Text
@@ -119,20 +95,24 @@ const Services = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col className="align-items-stretch">
             <Card
-              className="m-2 mx-auto"
-              style={{ width: "19rem", borderRadius: "20px", margin: "auto" }}
+              className="m-2 mx-auto "
+              style={{
+                width: "19rem",
+                borderRadius: "20px",
+                margin: "auto",
+                height: "400px",
+              }}
             >
               <Card.Img
+                className="w-50 mx-auto mt-3"
+                style={{ height: "160px" }}
                 variant="top"
-                src="http://127.0.0.1:8000/machine_pics/services.png"
+                src="http://127.0.0.1:8000/machine_pics/hand_shake.jpeg"
               />
               <Card.Body>
-                <Card.Title
-                  // data-testid={`default-title-${index}`}
-                  className="text-center change-font-title"
-                >
+                <Card.Title className="text-center change-font-title mt-5">
                   قرارداد های خدماتی
                 </Card.Title>
                 <Card.Text

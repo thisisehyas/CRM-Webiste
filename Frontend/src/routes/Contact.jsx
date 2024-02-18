@@ -9,6 +9,7 @@ import "../styles/fontSize.css";
 import { getAccessToken } from "../components/authUtils.jsx";
 import React, { useState, useEffect } from "react";
 import Alert from "react-bootstrap/Alert";
+import "../styles/font.css";
 
 const Contact = () => {
   const [successMessage, setSuccessMessage] = useState("");

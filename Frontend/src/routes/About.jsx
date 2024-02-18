@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Header from "../components/Header.jsx";
 import "../styles/fontSize.css";
+import "../styles/font.css";
 
 const About = () => {
   useEffect(() => {

@@ -15,7 +15,7 @@ function carousel() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-        style={{height:'65vh'}}
+          style={{ height: "65vh" }}
           className="d-block w-100 "
           src="http://127.0.0.1:8000/machine_pics/header.jpg"
           alt="Third Slide"
@@ -23,7 +23,7 @@ function carousel() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-            style={{height:'65vh'}}
+          style={{ height: "65vh" }}
           className="d-block w-100 "
           src="http://127.0.0.1:8000/machine_pics/header1.jpg"
           alt="Third Slide"

@@ -3,9 +3,9 @@ import Header from "../components/Header.jsx";
 import MiddleEach from "../components/MiddleEach.jsx";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import "../styles/font.css";
 
 const EachProduct = (props) => {
-
   const [productData, setProductData] = useState(null);
   const { id } = useParams(); // Getting the category ID from URL params
 
@@ -44,6 +44,7 @@ const EachProduct = (props) => {
           <MiddleEach
             description={productData.description}
             picture={productData.picture}
+            additional_picture={productData.additional_picture}
           />
         </>
       ) : (

@@ -5,6 +5,7 @@ import Row from "react-bootstrap/esm/Row";
 import Card from "react-bootstrap/Card";
 import React, { useEffect } from "react";
 import "../styles/fontSize.css";
+import "../styles/font.css";
 
 const SampleWorks = () => {
   useEffect(() => {

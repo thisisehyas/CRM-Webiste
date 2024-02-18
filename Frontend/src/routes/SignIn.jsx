@@ -5,6 +5,7 @@ import "../styles/signin.css";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import React, { useState } from "react";
+import "../styles/font.css";
 
 const SignIn = () => {
   const [error, setError] = useState(null);

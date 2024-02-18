@@ -6,6 +6,7 @@ import UsersList from "../components/UsersList";
 import { Navbar, Container } from "react-bootstrap";
 import OrderSubmitBox from "../components/Admin/OrderSubmitBox";
 import OrderList from "../components/Admin/OrderList";
+import "../styles/font.css";
 
 const AdminPanel = () => {
   return (

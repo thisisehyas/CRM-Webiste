@@ -3,6 +3,7 @@ import React from "react";
 import Container from "react-bootstrap/esm/Container";
 import "../styles/footer.css";
 import { Link } from "react-router-dom";
+import "../styles/font.css";
 
 const footer1 = () => {
   return (
