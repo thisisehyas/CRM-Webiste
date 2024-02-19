@@ -43,6 +43,7 @@ const AdminProduct = (props) => {
           <AdminMiddleEach
             description={productData.description}
             picture={productData.picture}
+            additional_picture={productData.additional_picture}
           />
         </>
       ) : (

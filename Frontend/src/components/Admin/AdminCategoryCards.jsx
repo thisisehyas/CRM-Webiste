@@ -223,14 +223,18 @@ function Card1() {
       <Wave />
 
       {/* Modal for adding a new category */}
-      <Modal show={showAddModal} onHide={handleCloseAddModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add New Category</Modal.Title>
+      <Modal
+        show={showAddModal}
+        onHide={handleCloseAddModal}
+        style={{ direction: "rtl", textAlign: "right" }}
+      >
+        <Modal.Header>
+          <Modal.Title>اضافه کردن دسته‌بندی جدید</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="newCategoryTitle">
-              <Form.Label>Category Title:</Form.Label>
+              <Form.Label>تیتر دسته‌بندی:</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter category title"
@@ -242,10 +246,10 @@ function Card1() {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseAddModal}>
-            Close
+            بستن
           </Button>
           <Button variant="primary" onClick={handleAddCategory}>
-            Add Category
+            اضافه كردن
           </Button>
         </Modal.Footer>
       </Modal>
