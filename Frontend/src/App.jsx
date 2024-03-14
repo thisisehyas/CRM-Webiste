@@ -5,8 +5,8 @@ import SignUp from "./routes/Signup.jsx";
 function App() {
   return (
     <>
-      <Login />
       <SignUp />
+      {/* <Login /> */}
     </>
   );
 }
