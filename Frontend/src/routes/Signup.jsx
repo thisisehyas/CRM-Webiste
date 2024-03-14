@@ -261,7 +261,7 @@ const SignIn = () => {
               disabled={!isCodeEntered || verificationSuccess} // Enable the button if the code is entered
               onClick={handleVerificationSubmit}
             >
-              ثبت نام1
+              ثبت نام
             </Button>
           </div>
         ) : (
@@ -269,7 +269,7 @@ const SignIn = () => {
             type="submit"
             className="mt-4 change-font login-button mx-auto d-block"
           >
-            ثبت نام2
+            ثبت نام
           </Button>
         )}
       </Form>
