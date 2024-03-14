@@ -1,0 +1,27 @@
+.change-font {
+  font-size: 100%;
+}
+
+.change-font-btn {
+  font-size: 80%;
+}
+
+.change-font-title,
+.change-font-title-CPanel {
+  font-size: 130%;
+}
+
+@media screen and (max-width: 770px) {
+  .change-font,
+  .change-font-btn {
+    font-size: 80%;
+  }
+
+  .change-font-title {
+    font-size: 110%;
+  }
+
+  .change-font-title-CPanel {
+    font-size: 130%;
+  }
+}

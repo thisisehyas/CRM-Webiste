@@ -1,15 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from "./routes/Login.jsx";
+import SignUp from "./routes/Signup.jsx";
 
 function App() {
   return (
     <>
-      <Router>
-        <Switch>
-          <Route path="/login">{/* <Login /> */}</Route>
-          <Route path="/SignIn">{/* <SignIn /> */}</Route>
-        </Switch>
-      </Router>
+      <Login />
+      <SignUp />
     </>
   );
 }
