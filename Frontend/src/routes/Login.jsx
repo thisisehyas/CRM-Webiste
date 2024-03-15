@@ -11,6 +11,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { getAccessToken, setAccessToken } from "../components/authUtils";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -19,6 +20,11 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -106,15 +112,25 @@ const Login = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="Password">
-          <Form.Control
-            className="change-font form-control"
-            type="password"
-            required
-            placeholder="رمز عبور خود را وارد کنید."
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
+          <div className="password-input">
+            <Form.Control
+              className="change-font form-control"
+              type={showPassword ? "text" : "password"}
+              required
+              placeholder="رمز عبور خود را وارد کنید."
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <Button
+              variant="light"
+              className="password-toggle-btn"
+              onClick={togglePasswordVisibility}
+              style={{ color: "gray" }}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </Button>
+          </div>
         </Form.Group>
 
         <Button
@@ -147,6 +163,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// - auth utils and token saving and everything should be
-//   saved after the code is verified.

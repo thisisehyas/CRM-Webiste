@@ -8,6 +8,7 @@ import "../styles/font.css";
 import axios from "axios";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { getAccessToken, setAccessToken } from "../components/authUtils";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
   const [countdown, setCountdown] = useState(60);
@@ -24,6 +25,11 @@ const Signup = () => {
   const [verificationError, setVerificationError] = useState(false);
   const [signupSuccess, setSignupSuccess] = useState(false);
   const [signupError, setSignupError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   useEffect(() => {
     if (countdown > 0 && showVerification) {
@@ -195,15 +201,25 @@ const Signup = () => {
             />
           </Col>
           <Col md={6} className="mb-1 mt-5">
-            <Form.Control
-              className="change-font form-control"
-              required
-              type="password"
-              placeholder="رمز عبور"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
+            <div className="password-input">
+              <Form.Control
+                className="change-font form-control"
+                required
+                type={showPassword ? "text" : "password"}
+                placeholder="رمز عبور"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+              <Button
+                variant="light"
+                className="password-toggle-btn"
+                onClick={togglePasswordVisibility}
+                style={{ color: "gray" }}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </Button>
+            </div>
           </Col>
         </Row>
 
@@ -299,5 +315,3 @@ export default Signup;
 //   slowley down.
 // - تاخیر بزن روی پیام اینکه موفق بود بعد ریدایرکت کن یه صفحه دیگه به نظرم
 //   حالا اونجا پیام رو نشون بده یا هرچی. ولی به نظرم ریدایرکت کن که رفرش بشه صفحه خود به خود.
-// - auth utils and token saving and everything should be
-//   saved after the code is verified.
