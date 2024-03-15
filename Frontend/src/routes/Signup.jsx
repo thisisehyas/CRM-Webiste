@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/font.css";
 import axios from "axios";
 
-const SignIn = () => {
+const Signup = () => {
   const [countdown, setCountdown] = useState(60);
   const [showVerification, setShowVerification] = useState(false);
   const [isCodeEntered, setIsCodeEntered] = useState(false);
@@ -124,7 +124,7 @@ const SignIn = () => {
 
   return (
     <Container
-      className="mt-4 mb-2 p-0 d-flex align-items-center justify-content-center flex-column"
+      className="mt-5 mb-2 p-0 d-flex align-items-center justify-content-center flex-column"
       style={{
         width: "100%",
         minHeight: "80vh",
@@ -258,7 +258,7 @@ const SignIn = () => {
             <Button
               type="submit"
               className="mt-4 change-font login-button mx-auto d-block"
-              disabled={!isCodeEntered || verificationSuccess} // Enable the button if the code is entered
+              disabled={!isCodeEntered || verificationSuccess} 
               onClick={handleVerificationSubmit}
             >
               ثبت نام
@@ -284,16 +284,10 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Signup;
 
 // - put a see the password button next to the password
 //   as you don't have the repeat the password field anymore
-// - showing error message when the sign up wasn't successful.
-// - a field should appear for entering the code
-//   and when the code is successful the person
-//   should be redirected to a page that for example
-//   says the sign up was successful or a message
-//   be shown in the same page.
 // - improve the style of the verification code field
 // - improve the appearing of the code field for
 //   example use animation and transition to make
@@ -301,8 +295,6 @@ export default SignIn;
 //   slowley down.
 // - don't forget the line that redirects to the
 //   login page when the user already has an account.
-// - the pattern for the code input field should be
-//   only six digits not more and not less.
 // - تاخیر بزن روی پیام اینکه موفق بود بعد ریدایرکت کن یه صفحه دیگه به نظرم
 //   حالا اونجا پیام رو نشون بده یا هرچی. ولی به نظرم ریدایرکت کن که رفرش بشه صفحه خود به خود.
 // - auth utils and token saving and everything should be
