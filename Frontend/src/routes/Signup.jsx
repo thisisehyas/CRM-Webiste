@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/font.css";
 import axios from "axios";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { getAccessToken, setAccessToken } from "../components/authUtils";
 
 const Signup = () => {
   const [countdown, setCountdown] = useState(60);
@@ -101,6 +102,8 @@ const Signup = () => {
         console.log("verification code valid");
         setVerificationSuccess(true);
         setIsCodeEntered(true);
+        setAccessToken(response.data.access_token);
+        console.log("access token:", getAccessToken());
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -259,7 +262,7 @@ const Signup = () => {
             <Button
               type="submit"
               className="mt-4 change-font login-button mx-auto d-block"
-              disabled={!isCodeEntered || verificationSuccess} 
+              disabled={!isCodeEntered || verificationSuccess}
               onClick={handleVerificationSubmit}
             >
               ثبت نام

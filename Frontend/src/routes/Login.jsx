@@ -10,6 +10,7 @@ import { Alert } from "react-bootstrap";
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { getAccessToken, setAccessToken } from "../components/authUtils";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -35,11 +36,11 @@ const Login = () => {
         formData
       );
       if (response.status === 200) {
-        // Login successful
-        // You can save the access token in local storage or session storage
         setSuccessMessage("ورود با موفقیت انجام شد.");
         setError("");
         console.log("successful enter.");
+        setAccessToken(response.data.access);
+        console.log("access token: ", getAccessToken());
       } else {
         setError("خطا در ورود. لطفاً دوباره تلاش کنید.");
       }
