@@ -9,6 +9,7 @@ import "../styles/login.css";
 import { Alert } from "react-bootstrap";
 import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -138,7 +139,7 @@ const Login = () => {
         style={{ textAlign: "right", direction: "rtl" }}
         className="mb-3 text-muted form-text"
       >
-        {/* حساب ندارید؟ <Link to="/SignIn">ثبت نام کنید.</Link> */}
+        حساب ندارید؟ <Link to="/signup">ثبت نام کنید.</Link>
       </Form.Text>
     </Container>
   );

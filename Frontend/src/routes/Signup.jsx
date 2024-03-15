@@ -6,6 +6,7 @@ import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import "../styles/font.css";
 import axios from "axios";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Signup = () => {
   const [countdown, setCountdown] = useState(60);
@@ -278,7 +279,7 @@ const Signup = () => {
         style={{ textAlign: "right", direction: "rtl" }}
         className="mb-3 text-muted form-text"
       >
-        {/* قبلاً ثبت نام کرده‌اید؟<Link to="/Login"> وارد شوید.</Link> */}
+        قبلاً ثبت نام کرده‌اید؟<Link to="/login"> وارد شوید.</Link>
       </Form.Text>
     </Container>
   );
@@ -293,8 +294,6 @@ export default Signup;
 //   example use animation and transition to make
 //   it appear softly and move the sign up button
 //   slowley down.
-// - don't forget the line that redirects to the
-//   login page when the user already has an account.
 // - تاخیر بزن روی پیام اینکه موفق بود بعد ریدایرکت کن یه صفحه دیگه به نظرم
 //   حالا اونجا پیام رو نشون بده یا هرچی. ولی به نظرم ریدایرکت کن که رفرش بشه صفحه خود به خود.
 // - auth utils and token saving and everything should be
