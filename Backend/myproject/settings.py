@@ -144,3 +144,8 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'iam.CustomUser'
+
+AUTHENTICATION_BACKENDS = [
+    'iam.backends.CustomPhoneBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]

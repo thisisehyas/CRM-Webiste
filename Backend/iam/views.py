@@ -7,11 +7,14 @@ from .serializers import UserSerializer
 from .models import CustomUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.http import HttpRequest
+from django.contrib.auth import get_user_model
 import redis
 import random
 import string
 import time
 from django.utils import timezone
+from django.contrib.auth import authenticate
+
 
 
 redis_client = redis.StrictRedis(host='localhost', port=6379, db=0)
@@ -110,7 +113,7 @@ def login(request):
     phone_number = data.get('phone_number')
     password = data.get('password')
 
-    user = authenticate(phone_number=phone_number, password=password)
+    user = authenticate(request,phone_number=phone_number, password=password)
     if user:
         if user.is_active:
             refresh = RefreshToken.for_user(user)
@@ -185,6 +188,7 @@ from django.utils import timezone
     tags=["Authentication"],
     operation_description="Verify the provided verification code for a given phone number and generate access and refresh tokens for the user."
 )
+
 @api_view(['POST'])
 def verify_code(request):
     """
@@ -200,14 +204,19 @@ def verify_code(request):
         if saved_code == code:
             redis_client.delete(phone_number)
 
+            User = get_user_model()
+
             try:
-                user = CustomUser.objects.get(phone_number=phone_number)
-            except CustomUser.DoesNotExist:
-                user = CustomUser.objects.create_user(
+                user = User.objects.get(phone_number=phone_number)
+            except User.DoesNotExist:
+                user = User.objects.create_user(
                     username=phone_number,
                     phone_number=phone_number,
-                    is_active=True
+                    is_active=True  
                 )
+            else:
+                user.is_active = True
+                user.save()
 
             refresh = RefreshToken.for_user(user)
             access_token = refresh.access_token

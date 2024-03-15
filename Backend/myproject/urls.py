@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from iam.models import CustomUser
 # from iam.swagger import schema_view
+admin.site.register(CustomUser) 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('iam/', include('iam.urls')),
-    # path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'), 
-    # path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),  
+  
 ]
