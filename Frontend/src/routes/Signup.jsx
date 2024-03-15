@@ -306,12 +306,8 @@ const Signup = () => {
 
 export default Signup;
 
-// - put a see the password button next to the password
-//   as you don't have the repeat the password field anymore
 // - improve the style of the verification code field
 // - improve the appearing of the code field for
 //   example use animation and transition to make
 //   it appear softly and move the sign up button
 //   slowley down.
-// - تاخیر بزن روی پیام اینکه موفق بود بعد ریدایرکت کن یه صفحه دیگه به نظرم
-//   حالا اونجا پیام رو نشون بده یا هرچی. ولی به نظرم ریدایرکت کن که رفرش بشه صفحه خود به خود.

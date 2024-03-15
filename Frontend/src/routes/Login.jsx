@@ -82,7 +82,7 @@ const Login = () => {
           width: "100%",
           borderTop: "3px solid #D6D5D5",
           position: "absolute",
-          top: "40%",
+          top: "38%",
           transform: "translateY(-50%)",
         }}
       />
