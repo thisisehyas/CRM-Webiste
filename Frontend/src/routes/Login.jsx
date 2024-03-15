@@ -1,13 +1,56 @@
-import Container from "react-bootstrap/esm/Container";
-import Image from "react-bootstrap/Image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
+import Container from "react-bootstrap/esm/Container";
 import "../styles/font.css";
 import "../styles/fontSize.css";
 import "../styles/login.css";
+import { Alert } from "react-bootstrap";
+import axios from "axios";
+import React, { useState } from "react";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    phone_number: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/iam/login/",
+        formData
+      );
+      if (response.status === 200) {
+        // Login successful
+        // You can save the access token in local storage or session storage
+        setSuccessMessage("ورود با موفقیت انجام شد.");
+        setError("");
+        console.log("successful enter.");
+      } else {
+        setError("خطا در ورود. لطفاً دوباره تلاش کنید.");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setError("شماره تلفن یا رمز عبور نادرست است.");
+      } else {
+        setError("خطا در ورود. لطفاً دوباره تلاش کنید.");
+      }
+    }
+  };
+
   return (
     <Container
       className="mt-5 mb-5 p-0 d-flex align-items-center justify-content-center flex-column"
@@ -36,6 +79,7 @@ const Login = () => {
         }}
       />
       <Form
+        onSubmit={handleSubmit}
         style={{
           direction: "rtl",
           textAlign: "right",
@@ -51,29 +95,44 @@ const Login = () => {
             className="change-font form-control"
             required
             type="text"
-            placeholder="نام کاربری خود را وارد کنید."
+            placeholder="شماره تلفن خود را وارد کنید."
+            pattern="^09\d{9}$|^(\+98|0)9\d{9}$"
+            name="phone_number"
+            value={formData.phone_number}
+            onChange={handleChange}
           />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="Password">
-          <Form className="lable"></Form>
           <Form.Control
             className="change-font form-control"
             type="password"
             required
             placeholder="رمز عبور خود را وارد کنید."
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
           />
-          {/* <Form.Text className="text-center text-muted form-text d-block">
-            رمز عبور خود را فراموش کرده‌اید؟ <Link to="">کلیک کنید.</Link>
-          </Form.Text> */}
         </Form.Group>
 
         <Button
           type="submit"
           className="login-button mt-4 change-font mx-auto d-block"
+          disabled={!!successMessage}
         >
           ورود
         </Button>
+        {successMessage ? ( // Display success message if available
+          <Alert variant="success" className="mt-4 text-center change-font">
+            {successMessage}
+          </Alert>
+        ) : (
+          error && ( // Display error message if available
+            <Alert variant="danger" className="mt-4 text-center change-font">
+              {error}
+            </Alert>
+          )
+        )}
       </Form>
       <Form.Text
         style={{ textAlign: "right", direction: "rtl" }}
@@ -86,3 +145,6 @@ const Login = () => {
 };
 
 export default Login;
+
+// - auth utils and token saving and everything should be
+//   saved after the code is verified.
