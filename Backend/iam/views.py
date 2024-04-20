@@ -9,6 +9,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.http import HttpRequest
 from django.contrib.auth import get_user_model
 import redis
+from datetime import datetime  
+from django.utils import timezone
 import random
 import string
 import time
@@ -16,13 +18,21 @@ from django.utils import timezone
 from django.contrib.auth import authenticate
 
 
-
-redis_client = redis.StrictRedis(host='localhost', port=6379, db=0)
+REDIS_HOST = 'my-redis'
+REDIS_PORT = 6379
+redis_client = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0)
 verification_code_ttl = 60
 
 def generate_verification_code():
     code = ''.join(random.choices(string.digits, k=6))
     return code
+
+# redis_client = redis.StrictRedis(host='localhost', port=6379, db=0)
+# verification_code_ttl = 60
+
+# def generate_verification_code():
+#     code = ''.join(random.choices(string.digits, k=6))
+#     return code
 
 temp_user_data = {}
 
@@ -35,9 +45,9 @@ temp_user_data = {}
             'last_name': openapi.Schema(type=openapi.TYPE_STRING),
             'phone_number': openapi.Schema(type=openapi.TYPE_STRING),
             'password': openapi.Schema(type=openapi.TYPE_STRING),
-            'code': openapi.Schema(type=openapi.TYPE_STRING),  
+            
         },
-        required=['first_name', 'last_name', 'phone_number', 'password', 'code']  
+        required=['first_name', 'last_name', 'phone_number', 'password']  
     ),
     responses={
         status.HTTP_201_CREATED: openapi.Response(
@@ -260,7 +270,7 @@ def resend_verification_code(request):
         
         last_code_sent_time = redis_client.get(f'{phone_number}_last_code_sent_time')
         if last_code_sent_time:
-            last_sent_time = timezone.make_aware(datetime.fromisoformat(last_code_sent_time.decode('utf-8')))
+            last_sent_time = timezone.localtime(datetime.fromisoformat(last_code_sent_time.decode('utf-8')))
             elapsed_time = timezone.now() - last_sent_time
             if elapsed_time.seconds < 60:
                 return Response({'message': 'Please wait before requesting a new verification code'}, status=status.HTTP_400_BAD_REQUEST)

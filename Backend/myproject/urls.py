@@ -16,9 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from iam.models import CustomUser
+
 # from iam.swagger import schema_view
-admin.site.register(CustomUser) 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
