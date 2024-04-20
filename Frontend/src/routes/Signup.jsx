@@ -42,7 +42,7 @@ const Signup = () => {
 
   const handleResendCode = () => {
     axios
-      .post("http://127.0.0.1:8000/iam/resend-verification-code/", {
+      .post("http://localhost:8080/iam/resend-verification-code/", {
         phone_number: formData.phone_number,
       })
       .then((response) => {
@@ -78,7 +78,7 @@ const Signup = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/iam/signup/",
+        "http://localhost:8080/iam/signup/",
         formData
       );
       if (response.status === 201) {
@@ -98,7 +98,7 @@ const Signup = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/iam/verify-code/",
+        "http://localhost:8080/iam/verify-code/",
         {
           phone_number: formData.phone_number,
           code: verificationCode,
@@ -281,7 +281,7 @@ const Signup = () => {
               disabled={!isCodeEntered || verificationSuccess}
               onClick={handleVerificationSubmit}
             >
-              ثبت نام
+              تاييد
             </Button>
           </div>
         ) : (

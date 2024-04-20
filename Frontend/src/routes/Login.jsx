@@ -38,7 +38,7 @@ const Login = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/iam/login/",
+        "http://localhost:8080/iam/login/",
         formData
       );
       if (response.status === 200) {
