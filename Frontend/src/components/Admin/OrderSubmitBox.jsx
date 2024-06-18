@@ -54,7 +54,7 @@ const OrderSubmitBox = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8080/core/auth/users/", {
+        const response = await fetch("http://127.0.0.1:8080/iam/iam/users/", {
           headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
         if (!response.ok) {
@@ -71,7 +71,7 @@ const OrderSubmitBox = () => {
 
     const fetchAdminInfo = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8080/core/auth/users/me/", {
+        const response = await fetch("http://127.0.0.1:8080/iam/iam/user/me/", {
           headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
         if (!response.ok) {
@@ -436,4 +436,4 @@ export default OrderSubmitBox;
 // The pattern is not checked for the phone number field.
 // First should be checked if the user is already a costumer. If yes, the phone number field should
 //    be filled with the phone number of costumer. If not a customer should be made which is already
-//    happening by default. 
+//    happening by default.
