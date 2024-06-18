@@ -9,6 +9,7 @@ import axios from "axios";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { getAccessToken, setAccessToken } from "../components/authUtils";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
 
 const Signup = () => {
   const [countdown, setCountdown] = useState(60);
@@ -26,6 +27,8 @@ const Signup = () => {
   const [signupSuccess, setSignupSuccess] = useState(false);
   const [signupError, setSignupError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const history = useHistory();
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -110,6 +113,9 @@ const Signup = () => {
         setIsCodeEntered(true);
         setAccessToken(response.data.access_token);
         console.log("access token:", getAccessToken());
+        setTimeout(() => {
+          history.push("/login");
+        }, 2000);
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {

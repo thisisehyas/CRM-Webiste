@@ -9,7 +9,7 @@ import "../styles/login.css";
 import { Alert } from "react-bootstrap";
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom";
 import { getAccessToken, setAccessToken } from "../components/authUtils";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -21,6 +21,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const history = useHistory();
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -47,6 +48,25 @@ const Login = () => {
         console.log("successful enter.");
         setAccessToken(response.data.access);
         console.log("access token: ", getAccessToken());
+
+        const userStatusResponse = await axios.get(
+          `http://localhost:8080/iam/iam/api/user-status/${formData.phone_number}/`
+        );
+
+        if (userStatusResponse.status === 200) {
+          const isStaff = userStatusResponse.data.is_staff;
+          if (isStaff) {
+            setTimeout(() => {
+              history.push("/adminpanel");
+            }, 2000);
+          } else {
+            setTimeout(() => {
+              history.push("/");
+            }, 2000);
+          }
+        } else {
+          setError("خطا در تعیین وضعیت کاربر. لطفاً دوباره تلاش کنید.");
+        }
       } else {
         setError("خطا در ورود. لطفاً دوباره تلاش کنید.");
       }
@@ -140,12 +160,12 @@ const Login = () => {
         >
           ورود
         </Button>
-        {successMessage ? ( // Display success message if available
+        {successMessage ? (
           <Alert variant="success" className="mt-4 text-center change-font">
             {successMessage}
           </Alert>
         ) : (
-          error && ( // Display error message if available
+          error && (
             <Alert variant="danger" className="mt-4 text-center change-font">
               {error}
             </Alert>
