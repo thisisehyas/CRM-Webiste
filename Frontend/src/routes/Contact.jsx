@@ -167,7 +167,6 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  disabled
                 />
               </Form.Group>
 

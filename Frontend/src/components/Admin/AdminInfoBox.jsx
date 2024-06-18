@@ -1,24 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import "../../styles/fontSize.css";
 import { getAccessToken } from "../../components/authUtils";
-import { useState } from "react";
-import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const AdminInfoBox = () => {
   const [adminInfo, setAdminInfo] = useState({
     id: 0,
-    username: "",
-    email: "",
-    // first_name: "ادمین",
-    // last_name: "ادمین",
+    first_name: "",
+    last_name: "",
+    phone_number: "",
   });
 
   useEffect(() => {
-    // Fetch admin information when the component mounts
     fetchAdminInfo();
   }, []);
 
@@ -32,8 +27,6 @@ const AdminInfoBox = () => {
         },
       });
 
-      console.log("Admin info:" + adminInfo);
-
       if (!response.ok) {
         console.error("Failed to fetch admin info");
         throw new Error("Failed to fetch admin info");
@@ -42,10 +35,12 @@ const AdminInfoBox = () => {
       const adminData = await response.json();
       console.log("Fetched admin info successfully:", adminData);
       setAdminInfo(adminData);
+      console.log(adminData.email);
     } catch (error) {
       console.error("Error fetching admin info:", error.message);
     }
   };
+
   return (
     <Container
       style={{
@@ -53,33 +48,10 @@ const AdminInfoBox = () => {
         borderRadius: "10px",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
       }}
-      className="p-4 mt-3 change-font"
+      className="p-4 mt-3"
     >
       <Form style={{ textAlign: "right", direction: "rtl" }}>
         <h6 className="text-center mb-5"> اطلاعات ادمین</h6>
-        {/* <Row>
-          <Form.Group as={Col} md="6">
-            <Form.Label className="mt-2">نام</Form.Label>
-            <Form.Control
-              className="input-field"
-              required
-              type="text"
-              disabled
-              value={"ادمین"}
-            />
-          </Form.Group>
-
-          <Form.Group as={Col} md="6">
-            <Form.Label className="mt-2"> نام‌خانوادگی</Form.Label>
-            <Form.Control
-              className="input-field"
-              required
-              type="text"
-              disabled
-              value={"ادمین"}
-            />
-          </Form.Group>
-        </Row> */}
 
         <Row>
           <Form.Group as={Col} md="6">
@@ -90,20 +62,19 @@ const AdminInfoBox = () => {
                 type="text"
                 required
                 disabled
-                value={adminInfo.username}
+                value={`${adminInfo.first_name} ${adminInfo.last_name}`}
               />
             </InputGroup>
           </Form.Group>
 
           <Form.Group as={Col} md="6">
-            <Form.Label className="mt-2">ایمیل</Form.Label>
+            <Form.Label className="mt-2">شماره تلفن</Form.Label>
             <Form.Control
               className="input-field"
-              type="email"
+              type="text"
               required
-              pattern="[a-zA-Z0-9. _%+-]+@[a-zA-Z0-9"
               disabled
-              value={adminInfo.email}
+              value={adminInfo.phone_number}
             />
           </Form.Group>
         </Row>
@@ -113,5 +84,3 @@ const AdminInfoBox = () => {
 };
 
 export default AdminInfoBox;
-
-// the admin can not have a name when you create it with superuser

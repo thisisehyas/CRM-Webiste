@@ -94,17 +94,16 @@ const Navbar1 = () => {
               onClick={handleUserIconClick}
             >
               <svg
-                className="mb-2"
                 xmlns="http://www.w3.org/2000/svg"
                 width="40"
                 height="40"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-user"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-user mb-2"
               >
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
@@ -128,8 +127,7 @@ const Navbar1 = () => {
             <>
               <p>نام: {userData.first_name}</p>
               <p>نام خانوادگی: {userData.last_name}</p>
-              <p>ایمیل: {userData.email}</p>
-              <p>نام کاربری: {userData.username}</p>
+              <p>شماره تلفن: {userData.phone_number}</p>
             </>
           )}
         </Modal.Body>
