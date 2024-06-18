@@ -1,0 +1,49 @@
+/* styles for button  */
+.enter {
+  color: white;
+  background-color: #56b94c;
+  border-color: #56b94c;
+  width: 80px;
+}
+
+.enter:hover {
+  background-color: #44913b !important;
+  border-color: #44913b !important;
+}
+
+.nav-container {
+  box-shadow: 0px 4px rgba(153, 153, 153, 0.17);
+}
+
+.navbar-nav {
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 720px) {
+  .search-bar {
+    margin-left: 28%;
+  }
+
+  .form-div {
+    margin-right: 2px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .search-bar {
+    margin-left: 0%;
+    width: 210px;
+  }
+
+  .form-div {
+    margin-right: 50px;
+  }
+
+  .enter {
+    width: 80px;
+  }
+
+  .magnifier-icon {
+    right: 0;
+  }
+}

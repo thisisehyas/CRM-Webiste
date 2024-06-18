@@ -1,0 +1,26 @@
+.myCard {
+  width: 25%;
+  height: 38vh;
+margin-top: 10px;
+}
+
+.cardImage {
+  width: 85px;
+  height: 94px;
+}
+
+@media screen and (max-width: 720px) {
+  .myCard {
+    width: 10rem;
+    margin-bottom: 20px;
+  }
+
+  .cardImage {
+    width: 59px;
+    height: 58px;
+  }
+
+  .cardText {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,10 @@
+.items {
+  margin-top: 10%;
+}
+
+.item,
+.items {
+  padding: 3%;
+  border-radius: 10px;
+  font-size: 110%;
+}

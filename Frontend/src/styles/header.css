@@ -1,0 +1,44 @@
+.headerContainer {
+  position: relative;
+}
+
+.headerImage {
+  width: 100vw;
+}
+
+.headerText {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #464646;
+  font-size: 80px;
+
+  font-size: clamp(2rem, 4vw, 3rem); /* Responsive font size */
+  white-space: nowrap; /* Prevent text wrapping */
+  /* overflow: hidden;  */
+  /* text-overflow: ellipsis;  */
+}
+
+.headerSVG {
+  margin-top: 5px;
+  position: absolute;
+  top: 82%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 720px) {
+  .headerImage {
+    height: 30vh;
+  }
+
+  .headerText {
+    font-size: 55px;
+  }
+
+  .headerSVG {
+    top: 75%;
+    width: 50%;
+  }
+}

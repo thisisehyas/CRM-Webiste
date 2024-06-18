@@ -1,0 +1,10 @@
+/* Add New Product button styles */
+.add-product-button {
+    opacity: 0.7; /* Initial opacity */
+    transition: opacity 0.3s ease; /* Add a smooth transition effect */
+  }
+  
+  .add-product-button:hover {
+    opacity: 1; /* Opacity on hover */
+  }
+  
