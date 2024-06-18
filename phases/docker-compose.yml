@@ -1,0 +1,168 @@
+version: '3.8'
+
+services:
+  iam:
+    build: ./iam
+    volumes:
+      - ./iam:/app
+      - static_volume:/app/staticfiles
+    ports:
+      - "8000:8000"
+    depends_on:
+      # - core-grpc
+      - kafka
+    environment:
+      # - CORE_SERVICE_HOST=core-grpc
+      # - CORE_SERVICE_PORT=50051
+      - KAFKA_BROKER=kafka:9092
+    networks:
+      - app-network
+
+  media:
+    build: ./media
+    command: python manage.py runserver 0.0.0.0:8001
+    volumes:
+      - ./media:/app
+      - media_volume:/app/media
+    expose:
+      - "8001"
+    depends_on:
+      - my-redis
+      - mongo
+      - kafka
+    environment:
+      - DATABASE_URL=mongodb://newuser:password@mongo:27017/media_db
+      - KAFKA_BROKER=kafka:9092
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "8080:8080"
+    volumes:
+      - static_volume:/code/staticfiles
+    depends_on:
+      - iam
+      - media
+      - core-http
+      # - core-grpc
+    networks:
+      - app-network
+
+  my-redis:
+    image: redis
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: newuser
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: media_db
+    volumes:
+      - ./mongo-data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  core-http:
+    build: ./core
+    volumes:
+      - ./core:/app
+    ports:
+      - "8003:8003"
+    command: python manage.py runserver 0.0.0.0:8003
+    networks:
+      - app-network
+    depends_on:
+      - zookeeper
+      - kafka
+
+  # core-grpc:
+  #   build: ./core
+  #   volumes:
+  #     - ./core:/app
+  #   ports:
+  #     - "50051:50051"
+  #   command: python grpc_server.py
+  #   networks:
+  #     - app-network
+  #   depends_on:
+  #     - zookeeper
+  #     - kafka
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "telnet core-grpc 50051 || exit 1"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
+  #     start_period: 10s
+  
+
+  zookeeper:
+    image: wurstmeister/zookeeper:3.4.6
+    expose:
+      - "2181"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "echo", "ruok | nc localhost 2181 | grep imok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kafka:
+    image: wurstmeister/kafka:latest
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_BROKER_ID: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "broker-api-versions.sh", "--bootstrap-server", "localhost:9092"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  meilisearch:
+    image: getmeili/meilisearch
+    volumes:
+      - meilisearch-data:/data
+    ports:
+      - "7700:7700"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  static_volume:
+  mongo-data:
+    driver: local
+  media_volume:
+    driver: local
+  meilisearch-data:
