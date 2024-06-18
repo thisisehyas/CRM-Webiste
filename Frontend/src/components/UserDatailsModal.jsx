@@ -16,7 +16,7 @@ const UserDetailsModal = ({ userId, show, handleClose }) => {
             headers: {
               "Content-Type": "application/json",
               Authorization:
-                `JWT ${getAccessToken()}`,
+                `Bearer ${getAccessToken()}`,
             },
           }
         );

@@ -49,7 +49,7 @@ const MiddleEach = (props) => {
         },
         {
           headers: {
-            Authorization: `JWT ${getAccessToken()}`,
+            Authorization: `Bearer ${getAccessToken()}`,
             "Content-Type": "multipart/form-data",
           },
         }
@@ -118,7 +118,7 @@ const MiddleEach = (props) => {
         },
         {
           headers: {
-            Authorization: `JWT ${getAccessToken()}`,
+            Authorization: `Bearer ${getAccessToken()}`,
           },
         }
       )
@@ -175,7 +175,7 @@ const MiddleEach = (props) => {
         },
         {
           headers: {
-            Authorization: `JWT ${getAccessToken()}`,
+            Authorization: `Bearer ${getAccessToken()}`,
           },
         }
       )
@@ -223,7 +223,7 @@ const MiddleEach = (props) => {
         },
         {
           headers: {
-            Authorization: `JWT ${getAccessToken()}`,
+            Authorization: `Bearer ${getAccessToken()}`,
             "Content-Type": "multipart/form-data",
           },
         }

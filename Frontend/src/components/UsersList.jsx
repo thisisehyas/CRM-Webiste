@@ -18,11 +18,11 @@ const UsersList = () => {
   const fetchUsers = async () => {
     try {
       console.log("Fetching users...");
-      const response = await fetch("http://127.0.0.1:8080/core/auth/users/", {
+      const response = await fetch("http://127.0.0.1:8080/iam/iam/users/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `JWT ${getAccessToken()}`,
+          Authorization: `Bearer ${getAccessToken()}`,
         },
       });
 
@@ -52,17 +52,18 @@ const UsersList = () => {
     setShowUserDetailsModal(true);
   };
 
+  //change delete to delete by phone number
   const handleDeleteUser = async (userId) => {
     try {
       console.log("Deleting user...", userId);
       const currentPassword = prompt("Please enter your current password:");
       const response = await fetch(
-        `http://127.0.0.1:8080/core/auth/users/${userId}/`,
+        `http://127.0.0.1:8080/iam/iam/users/${userId}/`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `JWT ${getAccessToken()}`,
+            Authorization: `Bearer ${getAccessToken()}`,
           },
           body: JSON.stringify({
             current_password: currentPassword,

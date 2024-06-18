@@ -38,10 +38,10 @@ const Contact = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8080/core/auth/users/me/", {
+        const response = await fetch("http://127.0.0.1:8080/iam/iam/user/me/", {
           method: "GET",
           headers: {
-            Authorization: `JWT ${getAccessToken()}`,
+            Authorization: `Bearer ${getAccessToken()}`,
             "Content-Type": "application/json",
           },
         });
@@ -82,7 +82,7 @@ const Contact = () => {
     fetch("http://127.0.0.1:8080/core/message/", {
       method: "POST",
       headers: {
-        Authorization: `JWT ${getAccessToken()}`,
+        Authorization: `Bearer ${getAccessToken()}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(requestBody),

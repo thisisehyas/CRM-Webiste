@@ -55,7 +55,7 @@ const OrderSubmitBox = () => {
     const fetchUsers = async () => {
       try {
         const response = await fetch("http://127.0.0.1:8080/core/auth/users/", {
-          headers: { Authorization: `JWT ${getAccessToken()}` },
+          headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
         if (!response.ok) {
           throw new Error("Failed to fetch customers");
@@ -72,7 +72,7 @@ const OrderSubmitBox = () => {
     const fetchAdminInfo = async () => {
       try {
         const response = await fetch("http://127.0.0.1:8080/core/auth/users/me/", {
-          headers: { Authorization: `JWT ${getAccessToken()}` },
+          headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
         if (!response.ok) {
           throw new Error("Failed to fetch admin info");
@@ -153,7 +153,7 @@ const OrderSubmitBox = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `JWT ${getAccessToken()}`,
+          Authorization: `Bearer ${getAccessToken()}`,
         },
         body: requestBody,
       });
@@ -194,7 +194,7 @@ const OrderSubmitBox = () => {
       //   method: "POST",
       //   headers: {
       //     "Content-Type": "application/json",
-      //     Authorization: `JWT ${getAccessToken()}`,
+      //     Authorization: `Bearer ${getAccessToken()}`,
       //   },
       //   body: requestBodyOrder,
       // });
@@ -244,7 +244,7 @@ const OrderSubmitBox = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `JWT ${getAccessToken()}`,
+          Authorization: `Bearer ${getAccessToken()}`,
         },
         body: requestBodyOrder,
       });

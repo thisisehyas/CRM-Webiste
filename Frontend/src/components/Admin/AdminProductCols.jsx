@@ -62,7 +62,7 @@ const ProductsCols = (props) => {
     axios
       .post(apiUrl, newProduct, {
         headers: {
-          Authorization: `JWT ${getAccessToken()}`,
+          Authorization: `Bearer ${getAccessToken()}`,
           "Content-Type": "multipart/form-data",
         },
       })
@@ -176,7 +176,7 @@ const ProductsCols = (props) => {
     axios
       .delete(apiUrl, {
         headers: {
-          Authorization: `JWT ${getAccessToken()}`,
+          Authorization: `Bearer ${getAccessToken()}`,
         },
       })
       .then((response) => {

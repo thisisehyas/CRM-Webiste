@@ -46,7 +46,7 @@ const CostumerMessage = () => {
       while (nextUrl) {
         const response = await fetch(nextUrl, {
           headers: {
-            Authorization: `JWT ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
@@ -85,7 +85,7 @@ const CostumerMessage = () => {
       const response = await fetch(`http://127.0.0.1:8080/core/message/${id}/`, {
         method: "PATCH",
         headers: {
-          Authorization: `JWT ${token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ status: newStatus }),
@@ -157,7 +157,7 @@ const CostumerMessage = () => {
       const response = await fetch(`http://127.0.0.1:8080/core/message/${id}/`, {
         method: "DELETE",
         headers: {
-          Authorization: `JWT ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 

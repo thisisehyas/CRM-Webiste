@@ -28,12 +28,13 @@ const Navbar1 = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
+      console.log("The access token: ", getAccessToken());
       try {
         const response = await axios.get(
-          "http://localhost:8080/core/auth/users/me/",
+          "http://localhost:8080/iam/iam/user/me/",
           {
             headers: {
-              Authorization: `JWT ${getAccessToken()}`,
+              Authorization: `Bearer ${getAccessToken()}`,
             },
           }
         );
