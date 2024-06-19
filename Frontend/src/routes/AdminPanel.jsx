@@ -40,12 +40,12 @@ const AdminPanel = () => {
           <AdminInfoBox />
           <CostumerMessage />
           <UsersList />
-          <OrderList />
+          {/* <OrderList /> */}
         </Col>
 
         <Col md={6} xs={12}>
           <RoutesList />
-          <OrderSubmitBox />
+          {/* <OrderSubmitBox /> */}
         </Col>
       </Row>
     </div>

@@ -25,10 +25,10 @@ const MiddleEach = (props) => {
           />
         </Col>
       </Row>
-      <Row>
+      {/* <Row>
         <h4 className="text-center mt-3">مشخصات فنی</h4>
         <Image src={props.additional_picture} alt="مشخصات فنی" />
-      </Row>
+      </Row> */}
     </Container>
   );
 };

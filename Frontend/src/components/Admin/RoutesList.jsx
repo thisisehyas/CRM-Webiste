@@ -16,7 +16,7 @@ const RoutesList = () => {
     >
       <h5 className="text-center mb-5 mt-3 pt-5">فهرست صفحات</h5>
       <ListGroup
-        style={{ direction: "rtl", textAlign: "right", padding: "10px" }}
+        style={{ direction: "rtl", textAlign: "right", padding: "40px" }}
       >
         <ListGroup.Item
           as={Link}

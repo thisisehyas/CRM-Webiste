@@ -49,7 +49,7 @@ const MiddleEach = (props) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
+            // Authorization: `Bearer ${getAccessToken()}`,
             "Content-Type": "multipart/form-data",
           },
         }
@@ -118,7 +118,7 @@ const MiddleEach = (props) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
+            // Authorization: `Bearer ${getAccessToken()}`,
           },
         }
       )
@@ -175,7 +175,7 @@ const MiddleEach = (props) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
+            // Authorization: `Bearer ${getAccessToken()}`,
           },
         }
       )
@@ -223,7 +223,7 @@ const MiddleEach = (props) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
+            // Authorization: `Bearer ${getAccessToken()}`,
             "Content-Type": "multipart/form-data",
           },
         }
@@ -282,7 +282,7 @@ const MiddleEach = (props) => {
             ></Image>
           </Col>
         </Row>
-        <div className="d-flex justify-content-end">
+        {/* <div className="d-flex justify-content-end">
           <Button
             className="mb-5 change-font"
             variant="primary"
@@ -290,8 +290,8 @@ const MiddleEach = (props) => {
           >
             تغییر تصویر
           </Button>
-        </div>
-        <Row>
+        </div> */}
+        {/* <Row>
           <h4 className="text-center mt-3">مشخصات فنی</h4>
           <Image
             className="mt-2"
@@ -307,7 +307,7 @@ const MiddleEach = (props) => {
           >
             تغییر تصویر
           </Button>
-        </div>
+        </div> */}
       </Container>
 
       {/* Modal for updating the title */}
@@ -400,7 +400,7 @@ const MiddleEach = (props) => {
         </Modal.Footer>
       </Modal>
 
-      <Modal
+      {/* <Modal
         style={{ textAlign: "right", direction: "rtl" }}
         show={showAdditionalPicModal}
         onHide={handleAdditionalPicModalClose}
@@ -427,7 +427,7 @@ const MiddleEach = (props) => {
             {console.log("button clicked")} ذخیره تغییرات
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
     </>
   );
 };

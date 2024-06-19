@@ -217,7 +217,7 @@ const CostumerMessage = () => {
 
   return (
     <Container
-      className="mt-4 pb-3 change-font"
+      className="mt-3 pb-3 change-font"
       style={{
         direction: "rtl",
         textAlign: "right",

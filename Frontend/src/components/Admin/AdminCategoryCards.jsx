@@ -42,7 +42,7 @@ function Card1() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${getAccessToken()}`,
+          // Authorization: `Bearer ${getAccessToken()}`,
         },
         body: JSON.stringify({ title: newCategoryTitle }),
       });
@@ -72,7 +72,7 @@ function Card1() {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${getAccessToken()}`,
+            // Authorization: `Bearer ${getAccessToken()}`,
           },
         }
       );
@@ -101,7 +101,7 @@ function Card1() {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${getAccessToken()}`,
+            // Authorization: `Bearer ${getAccessToken()}`,
           },
           body: JSON.stringify({ title: newTitle }),
         }

@@ -44,7 +44,7 @@ const EachProduct = (props) => {
           <MiddleEach
             description={productData.description}
             picture={productData.picture}
-            additional_picture={productData.additional_picture}
+            // additional_picture={productData.additional_picture}
           />
         </>
       ) : (
