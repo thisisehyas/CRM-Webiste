@@ -53,7 +53,6 @@ const Contact = () => {
         }
 
         const userData = await response.json();
-        // Set user info to the form data
         setFormData({
           full_name: `${userData.first_name} ${userData.last_name}`,
           email: userData.email,
@@ -62,11 +61,9 @@ const Contact = () => {
         });
       } catch (error) {
         console.error("Error fetching user info:", error);
-        // Handle error if needed
       }
     };
 
-    // Call the fetchUserInfo function
     fetchUserInfo();
   }, []);
 
@@ -79,16 +76,20 @@ const Contact = () => {
       status: "U",
       ...formData,
     };
+    console.log("AccessToken: ", getAccessToken());
     fetch("http://127.0.0.1:8080/core/message/", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${getAccessToken()}`,
+        // Authorization: `Bearer ${getAccessToken()}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(requestBody),
     })
       .then((response) => {
         if (!response.ok) {
+          console.log(
+            `Network response was not ok (Status: ${response.status})`
+          );
           throw new Error(
             `Network response was not ok (Status: ${response.status})`
           );
@@ -98,7 +99,6 @@ const Contact = () => {
       .then((data) => {
         setSuccessMessage("پیام شما با موفقیت ارسال شد!");
         console.log("Message sent successfully:", data);
-        // Optionally, you can handle success feedback to the user
         setIsFormSubmitted(true);
       })
       .catch((error) => {
@@ -146,16 +146,6 @@ const Contact = () => {
                 />
               </Form.Group>
 
-              {/* <Form.Group className="mb-3" controlId="form»LastName">
-                <Form.Label>نام خانوادگی</Form.Label>
-                <Form.Control
-                  className="change-font"
-                  required
-                  type="text"
-                  placeholder="نام خانوداگی خود را وارد کنید."
-                />
-              </Form.Group> */}
-
               <Form.Group className="mb-3" controlId="formEmail">
                 <Form.Label>آدرس ایمیل</Form.Label>
                 <Form.Control
@@ -169,17 +159,6 @@ const Contact = () => {
                   onChange={handleInputChange}
                 />
               </Form.Group>
-
-              {/* <Form.Group className="mb-3" controlId="phoneNumber">
-                <Form.Label>شماره تلفن همراه</Form.Label>
-                <Form.Control
-                  className="change-font"
-                  required
-                  type="text"
-                  placeholder="شماره تلفن خود را وارد کنید."
-                  pattern="^09[0-9]{9}$"
-                />
-              </Form.Group> */}
 
               <Form.Group className="mb-3" controlId="messageTitle">
                 <Form.Label>موضوع</Form.Label>
@@ -265,11 +244,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-// THINGS TO FIX:
-//  - Validation check on the form inputs can go further.
-//  - Shouldn't the font size be smaller in footer and nav too?
-//    Check it on mobile to see.
-
-// the button should be disabled when the user submits the form
-// and stay disabled until the user changes something in the input
