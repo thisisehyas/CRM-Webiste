@@ -45,9 +45,9 @@ const CostumerMessage = () => {
       }
       while (nextUrl) {
         const response = await fetch(nextUrl, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          // headers: {
+          //   Authorization: `Bearer ${token}`,
+          // },
         });
 
         if (!response.ok) {
@@ -82,14 +82,17 @@ const CostumerMessage = () => {
   const handleChangeStatus = async (id, newStatus) => {
     try {
       const token = getAccessToken();
-      const response = await fetch(`http://127.0.0.1:8080/core/message/${id}/`, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status: newStatus }),
-      });
+      const response = await fetch(
+        `http://127.0.0.1:8080/core/message/${id}/`,
+        {
+          method: "PATCH",
+          headers: {
+            // Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: newStatus }),
+        }
+      );
 
       if (!response.ok) {
         console.log(response.status);
@@ -154,12 +157,15 @@ const CostumerMessage = () => {
   const handleDeleteMessage = async (id) => {
     try {
       const token = getAccessToken();
-      const response = await fetch(`http://127.0.0.1:8080/core/message/${id}/`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `http://127.0.0.1:8080/core/message/${id}/`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         console.log(response.status);
