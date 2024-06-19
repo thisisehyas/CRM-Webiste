@@ -1,22 +1,20 @@
-// UserDetailsModal.js
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { getAccessToken } from "./authUtils";
 
-const UserDetailsModal = ({ userId, show, handleClose }) => {
+const UserDetailsModal = ({ phoneNumber, show, handleClose }) => {
   const [userDetails, setUserDetails] = useState(null);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:8080/core/auth/users/${userId}/`,
+          `http://127.0.0.1:8080/iam/iam/user/?phone_number=${phoneNumber}`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization:
-                `Bearer ${getAccessToken()}`,
+              Authorization: `Bearer ${getAccessToken()}`,
             },
           }
         );
@@ -37,7 +35,7 @@ const UserDetailsModal = ({ userId, show, handleClose }) => {
     if (show) {
       fetchUserDetails();
     }
-  }, [show, userId]);
+  }, [show, phoneNumber]);
 
   return (
     <Modal show={show} onHide={handleClose}>
@@ -45,12 +43,16 @@ const UserDetailsModal = ({ userId, show, handleClose }) => {
         <Modal.Title>User Details</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {userDetails && (
+        {userDetails ? (
           <div>
-            <p>Email: {userDetails.email}</p>
-            <p>Username: {userDetails.username}</p>
-            {/* Add more user details here */}
+            <p>First Name: {userDetails.first_name}</p>
+            <p>Last Name: {userDetails.last_name}</p>
+            <p>Phone Number: {userDetails.phone_number}</p>
+            <p>Customer: {userDetails.is_customer ? "Yes" : "No"}</p>
+            <p>Staff: {userDetails.is_staff ? "Yes" : "No"}</p>
           </div>
+        ) : (
+          <p>Loading...</p>
         )}
       </Modal.Body>
       <Modal.Footer>

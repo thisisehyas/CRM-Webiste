@@ -7,7 +7,7 @@ import { getAccessToken } from "./authUtils";
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
-  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [selectedUserPhoneNumber, setSelectedUserPhoneNumber] = useState(null);
   const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
 
   useEffect(() => {
@@ -47,18 +47,17 @@ const UsersList = () => {
     }
   };
 
-  const handleViewDetailsClick = (userId) => {
-    setSelectedUserId(userId);
+  const handleViewDetailsClick = (phoneNumber) => {
+    setSelectedUserPhoneNumber(phoneNumber);
     setShowUserDetailsModal(true);
   };
 
-  //change delete to delete by phone number
-  const handleDeleteUser = async (userId) => {
+  const handleDeleteUser = async (phoneNumber) => {
     try {
-      console.log("Deleting user...", userId);
+      console.log("Deleting user...", phoneNumber);
       const currentPassword = prompt("Please enter your current password:");
       const response = await fetch(
-        `http://127.0.0.1:8080/iam/iam/users/${userId}/`,
+        `http://localhost:8080/iam/iam/user/delete/?phone_number=${phoneNumber}`,
         {
           method: "DELETE",
           headers: {
@@ -66,7 +65,7 @@ const UsersList = () => {
             Authorization: `Bearer ${getAccessToken()}`,
           },
           body: JSON.stringify({
-            current_password: currentPassword,
+            phone_number: phoneNumber,
           }),
         }
       );
@@ -75,7 +74,6 @@ const UsersList = () => {
 
       if (!response.ok) {
         console.error("Failed to delete user");
-        // Check if response body is not empty before reading it
         const contentType = response.headers.get("content-type");
         if (contentType && contentType.indexOf("application/json") !== -1) {
           const errorBody = await response.json(); // Log the response body
@@ -120,17 +118,17 @@ const UsersList = () => {
             as="li"
             className="d-flex justify-content-between align-items-start item"
           >
-            {user.username}
+            {user.first_name} {user.last_name}
             <div className="d-flex">
               <Button
                 className="btn btn-danger change-font-btn"
                 style={{ marginLeft: "3px" }}
-                onClick={() => handleDeleteUser(user.id)}
+                onClick={() => handleDeleteUser(user.phone_number)}
               >
                 حذف کاربر
               </Button>
               <Button
-                onClick={() => handleViewDetailsClick(user.id)}
+                onClick={() => handleViewDetailsClick(user.phone_number)}
                 className="btn btn-success change-font-btn"
               >
                 مشاهده اطلاعات
@@ -140,7 +138,7 @@ const UsersList = () => {
         ))}
       </ListGroup>
       <UserDetailsModal
-        userId={selectedUserId}
+        phoneNumber={selectedUserPhoneNumber}
         show={showUserDetailsModal}
         handleClose={handleCloseUserDetailsModal}
       />
