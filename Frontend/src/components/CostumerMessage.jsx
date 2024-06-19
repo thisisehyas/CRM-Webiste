@@ -162,7 +162,7 @@ const CostumerMessage = () => {
         {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${token}`,
+            // Authorization: `Bearer ${token}`,
           },
         }
       );
