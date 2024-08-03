@@ -2,7 +2,7 @@ import Container from "react-bootstrap/esm/Container";
 import Image from "react-bootstrap/esm/Image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/signup.css";
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import "../styles/font.css";
 import axios from "axios";
@@ -10,6 +10,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { getAccessToken, setAccessToken } from "../components/authUtils";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
+import Alerts from "../components/Alerts";
 
 const Signup = () => {
   const [countdown, setCountdown] = useState(60);
@@ -114,7 +115,7 @@ const Signup = () => {
         setAccessToken(response.data.access_token);
         console.log("access token:", getAccessToken());
         setTimeout(() => {
-        history.push("/login");
+          history.push("/login");
         }, 2000);
       }
     } catch (error) {
@@ -229,15 +230,9 @@ const Signup = () => {
           </Col>
         </Row>
 
-        {signupError && (
-          <Alert variant="danger" className="mt-4 text-center change-font">
-            {signupError}
-          </Alert>
-        )}
+        {signupError && <Alerts variant="danger" message={signupError} />}
         {signupSuccess && (
-          <Alert variant="success" className="mt-4 text-center change-font">
-            حساب شما با موفقیت ایجاد شد.
-          </Alert>
+          <Alerts variant="success" message="حساب شما با موفقیت ایجاد شد." />
         )}
 
         {showVerification ? (
@@ -272,14 +267,14 @@ const Signup = () => {
             )}
 
             {(verificationSuccess || verificationError) && (
-              <Alert
+              <Alerts
                 variant={verificationSuccess ? "success" : "danger"}
-                className="mt-4 text-center change-font"
-              >
-                {verificationSuccess
-                  ? "حساب شما با موفقیت تایید شد."
-                  : "کد تایید اشتباه است."}
-              </Alert>
+                message={
+                  verificationSuccess
+                    ? "حساب شما با موفقیت تایید شد."
+                    : "کد تایید اشتباه است."
+                }
+              />
             )}
             <Button
               type="submit"
