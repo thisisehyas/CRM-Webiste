@@ -114,7 +114,7 @@ const Signup = () => {
         setAccessToken(response.data.access_token);
         console.log("access token:", getAccessToken());
         setTimeout(() => {
-          history.push("/login");
+        history.push("/login");
         }, 2000);
       }
     } catch (error) {
@@ -271,7 +271,7 @@ const Signup = () => {
               </Button>
             )}
 
-            {verificationSuccess || verificationError ? (
+            {(verificationSuccess || verificationError) && (
               <Alert
                 variant={verificationSuccess ? "success" : "danger"}
                 className="mt-4 text-center change-font"
@@ -280,7 +280,7 @@ const Signup = () => {
                   ? "حساب شما با موفقیت تایید شد."
                   : "کد تایید اشتباه است."}
               </Alert>
-            ) : null}
+            )}
             <Button
               type="submit"
               className="mt-4 change-font login-button mx-auto d-block"
