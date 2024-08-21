@@ -12,6 +12,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import Alerts from "../components/Alerts";
 import useForm from "../customHooks/useForm";
+import useCountdown from "../customHooks/useCountdown";
 
 const Signup = () => {
   // using custom hook 'useForm' for handling form logic
@@ -22,7 +23,6 @@ const Signup = () => {
     password: "",
   });
 
-  const [countdown, setCountdown] = useState(60);
   const [showVerification, setShowVerification] = useState(false);
   const [isCodeEntered, setIsCodeEntered] = useState(false);
   const [verificationCode, setVerificationCode] = useState("");
@@ -31,6 +31,9 @@ const Signup = () => {
   const [signupSuccess, setSignupSuccess] = useState(false);
   const [signupError, setSignupError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  // using custom hook 'useCountdown' for handling count down login
+  const [countdown, startCountdown] = useCountdown(60, showVerification);
 
   const history = useHistory();
 
@@ -55,7 +58,7 @@ const Signup = () => {
       .then((response) => {
         if (response.status === 200) {
           console.log("Verification code resent successfully");
-          setCountdown(60);
+          startCountdown(60);
         }
       })
       .catch((error) => {
@@ -82,7 +85,7 @@ const Signup = () => {
       );
       if (response.status === 201) {
         setShowVerification(true);
-        startCountdown();
+        startCountdown(60);
         setSignupSuccess(true);
         setTimeout(() => setSignupSuccess(false), 3000);
       }
@@ -121,17 +124,6 @@ const Signup = () => {
         console.log("Error verifying code: ", error);
       }
     }
-  };
-
-  const startCountdown = () => {
-    const interval = setInterval(() => {
-      setCountdown((prevCount) => {
-        if (prevCount === 1) {
-          clearInterval(interval);
-        }
-        return prevCount - 1;
-      });
-    }, 1000);
   };
 
   return (
