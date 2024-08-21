@@ -11,18 +11,21 @@ import { getAccessToken, setAccessToken } from "../components/authUtils";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import Alerts from "../components/Alerts";
+import useForm from "../customHooks/useForm";
 
 const Signup = () => {
-  const [countdown, setCountdown] = useState(60);
-  const [showVerification, setShowVerification] = useState(false);
-  const [isCodeEntered, setIsCodeEntered] = useState(false);
-  const [verificationCode, setVerificationCode] = useState("");
-  const [formData, setFormData] = useState({
+  // using custom hook 'useForm' for handling form logic
+  const [formData, handleChange] = useForm({
     first_name: "",
     last_name: "",
     phone_number: "",
     password: "",
   });
+
+  const [countdown, setCountdown] = useState(60);
+  const [showVerification, setShowVerification] = useState(false);
+  const [isCodeEntered, setIsCodeEntered] = useState(false);
+  const [verificationCode, setVerificationCode] = useState("");
   const [verificationSuccess, setVerificationSuccess] = useState(false);
   const [verificationError, setVerificationError] = useState(false);
   const [signupSuccess, setSignupSuccess] = useState(false);
@@ -62,14 +65,6 @@ const Signup = () => {
           console.log("Response body:", error.response.data);
         }
       });
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
   };
 
   const handleVerificationCodeChange = (event) => {
