@@ -40,15 +40,6 @@ const Signup = () => {
 
   const history = useHistory();
 
-  useEffect(() => {
-    if (countdown > 0 && showVerification) {
-      const timer = setInterval(() => {
-        setCountdown((prevCountdown) => prevCountdown - 1);
-      }, 1000);
-      return () => clearInterval(timer);
-    }
-  }, [countdown, showVerification]);
-
   const handleResendCode = () => {
     axios
       .post("http://localhost:8080/iam/iam/resend-verification-code/", {
