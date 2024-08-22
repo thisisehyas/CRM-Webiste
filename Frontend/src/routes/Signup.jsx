@@ -15,6 +15,7 @@ import useForm from "../customHooks/useForm";
 import useCountdown from "../customHooks/useCountdown";
 import usePasswordToggle from "../customHooks/usePasswordToggle";
 import useVerification from "../customHooks/useVerification";
+import useSignup from "../customHooks/useSignup";
 
 const Signup = () => {
   // using custom hook 'useForm' for handling form logic
@@ -38,9 +39,16 @@ const Signup = () => {
     handleVerificationSubmit,
   } = useVerification(formData.phone_number);
 
+  // using custom hook 'useSignup' for handling the submiton of the form
+  const { signupSuccess, signupError, handleSubmit } = useSignup(
+    formData,
+    () => {
+      setShowVerification(true);
+      startCountdown(60);
+    }
+  );
+
   const [showVerification, setShowVerification] = useState(false);
-  const [signupSuccess, setSignupSuccess] = useState(false);
-  const [signupError, setSignupError] = useState("");
 
   // using custom hook 'useCountdown' for handling count down login
   const [countdown, startCountdown] = useCountdown(60, showVerification);
@@ -65,26 +73,6 @@ const Signup = () => {
           console.log("Response body:", error.response.data);
         }
       });
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/iam/iam/signup/",
-        formData
-      );
-      if (response.status === 201) {
-        setShowVerification(true);
-        startCountdown(60);
-        setSignupSuccess(true);
-        setTimeout(() => setSignupSuccess(false), 3000);
-      }
-    } catch (error) {
-      console.error("Error creating user:", error);
-      setSignupError("خطا در ثبت نام!"); // Set error message
-      setTimeout(() => setSignupError(""), 3000);
-    }
   };
 
   return (
