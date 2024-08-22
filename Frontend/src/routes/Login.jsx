@@ -12,20 +12,20 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { getAccessToken, setAccessToken } from "../components/authUtils";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import usePasswordToggle from "../customHooks/usePasswordToggle";
 
 const Login = () => {
+  // using 'usePasswordToggle' custom hook to handle password visibility
+  const [showPassword, togglePasswordVisibility] = usePasswordToggle();
+
   const [formData, setFormData] = useState({
     phone_number: "",
     password: "",
   });
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const history = useHistory();
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
+  const history = useHistory();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
