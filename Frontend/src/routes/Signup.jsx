@@ -14,6 +14,7 @@ import Alerts from "../components/Alerts";
 import useForm from "../customHooks/useForm";
 import useCountdown from "../customHooks/useCountdown";
 import usePasswordToggle from "../customHooks/usePasswordToggle";
+import useVerification from "../customHooks/useVerification";
 
 const Signup = () => {
   // using custom hook 'useForm' for handling form logic
@@ -27,11 +28,17 @@ const Signup = () => {
   // using custom hook 'usePasswordToggle' for handling password visibility
   const [showPassword, togglePasswordVisibility] = usePasswordToggle();
 
+  // using custom hook 'useVerification' for handling the verification code
+  const {
+    verificationCode,
+    isCodeEntered,
+    verificationSuccess,
+    verificationError,
+    handleVerificationCodeChange,
+    handleVerificationSubmit,
+  } = useVerification(formData.phone_number);
+
   const [showVerification, setShowVerification] = useState(false);
-  const [isCodeEntered, setIsCodeEntered] = useState(false);
-  const [verificationCode, setVerificationCode] = useState("");
-  const [verificationSuccess, setVerificationSuccess] = useState(false);
-  const [verificationError, setVerificationError] = useState(false);
   const [signupSuccess, setSignupSuccess] = useState(false);
   const [signupError, setSignupError] = useState("");
 
@@ -60,12 +67,6 @@ const Signup = () => {
       });
   };
 
-  const handleVerificationCodeChange = (event) => {
-    const code = event.target.value;
-    setVerificationCode(code);
-    setIsCodeEntered(code.trim() !== "");
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -83,36 +84,6 @@ const Signup = () => {
       console.error("Error creating user:", error);
       setSignupError("خطا در ثبت نام!"); // Set error message
       setTimeout(() => setSignupError(""), 3000);
-    }
-  };
-
-  const handleVerificationSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/iam/iam/verify-code/",
-        {
-          phone_number: formData.phone_number,
-          code: verificationCode,
-        }
-      );
-      if (response.status === 200) {
-        console.log("verification code valid");
-        setVerificationSuccess(true);
-        setIsCodeEntered(true);
-        setAccessToken(response.data.access_token);
-        console.log("access token:", getAccessToken());
-        setTimeout(() => {
-          history.push("/login");
-        }, 2000);
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 400) {
-        console.log("Invalid verificatoin code");
-        setVerificationError(true);
-      } else {
-        console.log("Error verifying code: ", error);
-      }
     }
   };
 
